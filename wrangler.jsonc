@@ -1,0 +1,9 @@
+// Cloudflare Workers config - lets Workers Builds deploy this repo on push.
+// Assets-only: no Worker script, just the static site in public/.
+{
+  "name": "ballxpit-planner",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./public"
+  }
+}

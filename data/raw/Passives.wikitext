@@ -1,0 +1,399 @@
+Passives are special upgrades that you can obtain in a run. They can be leveled up to 3, have unique effects, and some can also be evolved using the [[Fusion Reactor]], just like [[balls]], but they can't be fused. The player starts with a few passives unlocked, and as they complete certain [[levels]], more passives become available.
+
+== Passive Types ==
+There are 2 types of passives: '''Base Passives''' and '''Evolved Passives'''.
+
+=== Base Passives ===
+Base Passives can be offered to the player when they level up as long as they have them unlocked, and some specific Base Passives can be combined together to create Evolved Passives. There are currently 54 Base Passives in the game.
+
+Most Base Passives can be offered as long as the player has a passive slot available, however, some passives do have extra requirements for them to be offered, mainly (but not restricted to) passives that are related to specific [[Status Effects|status effects]], which require you to have a ball that can apply that specific status effect to enemies for the passive to be offered.
+
+''(Note: Some requirements are still being discovered by the community, so some of this information could be incorrect).''
+{| class="sortable mw-collapsible wikitable trackable" id="basepass"
+!Icon
+!Name
+!Description
+!Appearance Requirement
+!Unlock Condition
+|-
+|{{PassiveTableRow|Archer's Effigy}}
+|Every 7-12 rows, spawn a stone archer with 160 health on your side. Stone archers are immune to ball damage and shoot arrows at enemies, dealing 10-20 each
+|N/A
+|Clear {{il|The SNOWYxSHORES}}
+|-
+|{{PassiveTableRow|Artificial Heart}}
+|Friendly pieces gain 100% more health
+|The player needs to have at least one other passive that gives them "friendly pieces" (e.g. Archer's Effigy)
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Baby Rattle}}
+|Gain 1.5x baby balls, but your aim becomes scattered
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Bandage Roll}}
+|Shoot 1-2 baby balls each time you're healed
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Bottled Tornado}}
+|When you catch a special ball, automatically shoot 1-3 new baby balls in random directions
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Breastplate}}
+|Decrease damage taken by 10%
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Crown of Thorns}}
+|Destroy the 2 nearest enemies when you are hit from close range
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Cursed Elixir}}
+|When a poisoned enemy dies, 10% chance for them to come back as a zombie with 240 health that moves up the board and fights enemies
+|The player needs to have a ball that applies Poison
+|Clear {{il|The BONExYARD}}
+|-
+|{{PassiveTableRow|Deadeye's Amulet}}
+|Critical hits deal 10-15 bonus damage
+|N/A
+|Clear {{il|The LIMINALxDESERT}}
+|-
+|{{PassiveTableRow|Diamond Hilted Dagger}}
+|Increase crit chance to 20% when hitting enemies in the front
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Dynamite}}
+|Every 5-10 rows, spawn an enemy with dynamite attached to them. Destroying them will deal 200-500 damage to nearby enemies
+|N/A
+|Clear {{il|The SMOLDERINGxDEPTHS}}
+|-
+|{{PassiveTableRow|Emerald Hilted Dagger}}
+|Increase crit chance to 20% when hitting enemies on their right side
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Ethereal Cloak}}
+|Balls go through enemies and deal 25% bonus damage until they hit the back of the field
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Everflowing Goblet}}
+|You can heal past your max health at 20% efficiency
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Eye of the Beholder}}
+|10% chance to dodge incoming attacks
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Fleet Feet}}
+|Increase movement speed by 10% and move at full speed while shooting
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Frozen Spike}}
+|When an enemy is frozen, they emit a chill to nearby enemies that deals 10-20 damage
+|The player needs to have a ball that applies Freeze
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Gemspring}}
+|Every 7-11 rows, spawn a Gemspring. Dealing damage to them causes them to drop an increasing amount of XP gems
+|N/A
+|Clear {{il|The SMOLDERINGxDEPTHS}}
+|-
+|{{PassiveTableRow|Ghostly Corset}}
+|Balls go through enemies and deal 20% bonus damage when hitting them from the side
+|N/A
+|Clear {{il|The HEAVENLYxGATES}}
+|-
+|{{PassiveTableRow|Ghostly Shield}}
+|Balls go through allies and heal them for 2 health
+|The player needs to have at least one other passive that gives them "allies" (e.g. Archer's Effigy)
+|Clear {{il|The HEAVENLYxGATES}}
+|-
+|{{PassiveTableRow|Golden Bull}}
+|Every 7-11 rows, spawn a golden bull with 400 health on your side. Golden bulls accrue 10 gold per minute. They also move up the field, blocking and attacking enemies in the way
+|N/A
+|Clear {{il|The SNOWYxSHORES}}
+|-
+|{{PassiveTableRow|Hand Fan}}
+|Slow down enemies in the same column as you by 50%
+|N/A
+|Clear {{il|The GORYxGRASSLANDS}}
+|-
+|{{PassiveTableRow|Hand Mirror}}
+|Projectiles have a 50% chance to reflect upon hitting you, dealing 20-40 damage if they hit an enemy
+|N/A
+|Clear {{il|The GORYxGRASSLANDS}}
+|-
+|{{PassiveTableRow|Healer's Effigy}}
+|Every 7-12 rows, spawn a stone healer with 100 health on your side, which heals you 10 health per minute while it's on the field. Healers are immune to ball damage and move up the field, blocking and attacking enemies in the way
+|N/A
+|Clear {{il|The SNOWYxSHORES}}
+|-
+|{{PassiveTableRow|Hourglass}}
+|Balls deal 150% damage, but damage decays by 30% each time they bounce (minimum 50%)
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Iron Onesie}}
+|Balls deal 0.5% more damage for each baby ball on the field.
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Kiss of Death}}
+|Charmed enemies have a 10% chance of dying after recovering
+|The player needs to have a ball that applies Charm
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Lover's Quiver}}
+|Projectiles have a 40% chance to heal you for 1 health instead of hurting you
+|N/A
+|Clear {{il|The GORYxGRASSLANDS}}
+|-
+|{{PassiveTableRow|Magic Staff}}
+|Increase area-of-effect damage (such as earthquake, laser, and lightning) by 20%
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Magnet}}
+|Increase range at which you pick up items and catch balls by 1.0 tiles
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Midnight Oil}}
+|Balls that hit flaming enemies light on fire and deal 10-20 bonus fire damage on the next hit
+|The player needs to have a ball that applies Burn
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Platinum Dumbbell}}
+|Balls deal 12% bonus damage until they hit the back of the field.
+|N/A
+|Clear ?
+|-
+|{{PassiveTableRow|Pressure Valve}}
+|Enemies explode on death, dealing 20-30 damage to adjacent enemies
+|N/A
+|Clear {{il|The BONExYARD}}
+|-
+|{{PassiveTableRow|Protective Charm}}
+|Gain a shield that blocks the next damage you would receive. Recharges after 60 seconds
+|N/A
+|Clear {{il|The FUNGALxFOREST}}
+|-
+|{{PassiveTableRow|Radiant Feather}}
+|Increases ball launch speed by 20%, but get knocked back a little each time you shoot a ball
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Reacher's Spear}}
+|Increase crit chance to 20% when hitting enemies in the same column as you
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Rubber Headband}}
+|Balls start off at 70% speed but increase by 20% each bounce (max 200%)
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Ruby Hilted Dagger}}
+|Increase crit chance to 15% when hitting enemies in the back
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Sapphire Hilted Dagger}}
+|Increase crit chance to 30% when hitting enemies on their left side
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Shortbow}}
+|Increase fire rate by 15%
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Silver Blindfold}}
+|Increase crit chance to 20% when hitting blinded enemies
+|N/A
+|Clear {{il|The LIMINALxDESERT}}
+|-
+|{{PassiveTableRow|Silver Bullet}}
+|Balls deal 20% bonus damage until they hit a wall
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Slingshot}}
+|25% chance to launch a baby ball when you pick up a gem
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Spiked Collar}}
+|Deal 30-50 to enemies the first time you get into their melee attack range
+|N/A
+|Clear {{il|The FUNGALxFOREST}}
+|-
+|{{PassiveTableRow|Stone Effigy}}
+|Every 7-12 rows, spawn a stone soldier with 200 health on your side. Stone soldiers are immune to ball damage and move up the field, blocking and attacking enemies in the way
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Sword Breaker}}
+|Balls deal 40% less damage, but gain 1% damage for each enemy on the field
+|N/A
+|?
+|-
+|{{PassiveTableRow|Traitor's Cowl}}
+|Stone allies can now be damaged by your balls, but you heal 2 health when a ball hits one
+|The player needs to have at least one other passive that gives them "stone allies" (e.g. Archer's Effigy)
+|Clear {{il|The HEAVENLYxGATES}}
+|-
+|{{PassiveTableRow|Turret}}
+|Floats around your character and shoots a baby ball at enemies every 2.0 seconds
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Upturned Hatchet}}
+|Balls deal 80% more damage after hitting the back of the field, otherwise damage is reduced by 20%
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Vampiric Sword}}
+|Each kill heals you by 5, but each shot you take deals 2 damage to you
+|N/A
+|Clear {{il|The LIMINALxDESERT}}
+|-
+|{{PassiveTableRow|Voodoo Doll}}
+|Curse has a 10% chance of killing enemies
+|The player needs to have a ball that applies Curse
+|Clear {{il|The BONExYARD}}
+|-
+|{{PassiveTableRow|Wagon Wheel}}
+|Each time a ball hits a wall, it deals 30% extra damage on the next hit
+|N/A
+|Clear {{il|The SMOLDERINGxDEPTHS}}
+|-
+|{{PassiveTableRow|War Horn}}
+|All baby balls deal 20% more damage
+|N/A
+|N/A
+(unlocked by default)
+|-
+|{{PassiveTableRow|Wretched Onion}}
+|Deal 6-12 per second to enemies within 2 tiles
+|N/A
+|Clear {{il|The FUNGALxFOREST}}
+|}
+
+=== Evolved Passives ===
+Evolved Passives are created by combining 2 or more specific Base Passives together in the [[Fusion Reactor]]. These passives have a new name, icon and effect.
+
+There are currently 17 Evolved Passives in the game.
+{| class="sortable mw-collapsible wikitable trackable" id="evopass"
+!Icon
+!Name
+!Description
+!Combination
+|-
+|{{PassiveTableRow|Ardent Tire}}
+|Each bounce increases ball speed by 10% and damage by 5%
+|{{il|Wagon Wheel}} + {{il|Rubber Headband}}
+|-
+|{{PassiveTableRow|Argent Stopwatch}}
+|Balls deal 200% damage, but damage decays by 20% each time they bounce (minimum 100%).
+|{{il|Hourglass}} + {{il|Silver Bullet}}
+|-
+|{{PassiveTableRow|Arrow of Fate}}
+|Projectiles no longer hurt you. Shoot 1-2 baby balls when hit by a projectile.
+|{{il|Lover's Quiver}} + {{il|Hand Mirror}}
+|-
+|{{PassiveTableRow|Cornucopia}}
+|Each time baby balls are created, spawn 0-1 additional baby balls
+|{{il|Baby Rattle}} + {{il|War Horn}}
+|-
+|{{PassiveTableRow|Deadeye's Cross}}
+|Increase critical hit chance to 60%
+|{{il|Diamond Hilted Dagger}} + {{il|Sapphire Hilted Dagger}} + {{il|Ruby Hilted Dagger}} + {{il|Emerald Hilted Dagger}}
+|-
+|{{PassiveTableRow|Deadeye's Impaler}}
+|Increase critical hit chance to 5%. Critical hits instantly kill non-boss enemies.
+|{{il|Deadeye's Cross}} + {{il|Gracious Impaler}}
+|-
+|{{PassiveTableRow|Full Metal Rapier}}
+|Balls deal 1% more damage for each baby ball and enemy on the field.
+|{{il|Iron Onesie}} + {{il|Sword Breaker}}
+|-
+|{{PassiveTableRow|Gracious Impaler}}
+|Critical hits have a 5% chance to instantly kill enemies
+|{{il|Reacher's Spear}} + {{il|Deadeye's Amulet}}
+|-
+|{{PassiveTableRow|Grotesque Artillery}}
+|Floats around your character and shoots a random level 1 unevolved special ball at enemies every 8.0 seconds.
+|{{il|Turret}} + {{il|Hand Fan}}
+|-
+|{{PassiveTableRow|Inglorious Hammer}}
+|When balls hit a wall or the back of the field, they hit a random enemy with 50% bonus damage.
+|{{il|Platinum Dumbbell}} + {{il|Upturned Hatchet}}
+|-
+|{{PassiveTableRow|Odiferous Shell}}
+|When you touch enemies, they have a 50% chance of instantly dying
+|{{il|Wretched Onion}} + {{il|Breastplate}}
+|-
+|{{PassiveTableRow|Phantom Regalia}}
+|Balls go through enemies until they hit the back wall. Balls deal 50% more damage when going through enemies
+|{{il|Ghostly Corset}} + {{il|Ethereal Cloak}}
+|-
+|{{PassiveTableRow|Remote Detonator}}
+|Enemies spawn a level 1 bomb ball upon dying.
+|{{il|Pressure Valve}} + {{il|Magnet}}
+|-
+|{{PassiveTableRow|Soul Reaver}}
+|Each kill heals you by 1 and you can heal past your max health at 30% efficiency
+|{{il|Vampiric Sword}} + {{il|Everflowing Goblet}}
+|-
+|{{PassiveTableRow|Tormenters Mask}}
+|Enemies have a 10% chance of dying immediately the first time they detect you
+|{{il|Spiked Collar}} + {{il|Crown of Thorns}}
+|-
+|{{PassiveTableRow|Windweaver}}
+|Shoot a level 1 wind ball every time you pick up a gem.
+|{{il|Bottled Tornado}} + {{il|Slingshot}}
+|-
+|{{PassiveTableRow|Wings of the Anointed}}
+|Balls move 40% faster and you move 20% faster. You no longer are affected by environmental hazards on the ground
+|{{il|Radiant Feather}} + {{il|Fleet Feet}}
+|}
+[[Category:Unlocks]]

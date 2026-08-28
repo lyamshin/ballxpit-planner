@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BALL x PIT Run Planner</title>
+<meta name="description" content="Plan a BALL x PIT run: mark the balls you're carrying and the ones you're chasing, and see every pickup, fusion and slot the run still needs.">
+<meta name="theme-color" content="#0b0e14">
+
+<!-- Link previews need absolute URLs. If the domain ever changes, these four
+     (canonical, og:url, og:image, twitter:image) are the only things to update. -->
+<link rel="canonical" href="https://ballxpitplanner.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BALL x PIT Run Planner">
+<meta property="og:url" content="https://ballxpitplanner.com/">
+<meta property="og:title" content="BALL x PIT Run Planner">
+<meta property="og:description" content="Click what you're carrying, mark what you're chasing, and see every ball you still need to roll.">
+<meta property="og:image" content="https://ballxpitplanner.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BALL x PIT Run Planner, showing balls colour-coded as carrying, fusable, needed and goal.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BALL x PIT Run Planner">
+<meta name="twitter:description" content="Click what you're carrying, mark what you're chasing, and see every ball you still need to roll.">
+<meta name="twitter:image" content="https://ballxpitplanner.com/og.png">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="og.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="icons/baby-ball.png" alt="">
+    <div>
+      <h1>Run Planner</h1>
+      <p class="sub">BALL <span>x</span> PIT</p>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab is-on" data-set="balls" role="tab">Balls</button>
+    <button class="tab" data-set="passives" role="tab">Passives</button>
+  </div>
+
+  <label class="slots">Ball slots
+    <input id="slots" type="number" min="2" max="12" step="1" value="5">
+  </label>
+
+  <input id="search" type="search" placeholder="Search&hellip;" autocomplete="off" spellcheck="false">
+  <button id="help" class="ghost" title="What is this?" aria-label="What is this?">?</button>
+  <button id="reset" class="ghost">Clear run</button>
+</header>
+
+<div class="intro" id="intro" hidden>
+  <div class="intro-card" role="dialog" aria-modal="true" aria-labelledby="intro-h">
+    <p class="intro-kicker">BALL <span>x</span> PIT</p>
+    <h2 id="intro-h">Plan the run before you're in it</h2>
+    <p class="intro-lede">
+      Every evolution needs specific level-3 balls — and building one
+      <em>spends</em> them.
+    </p>
+    <ol class="intro-steps">
+      <li>
+        <span class="s-dot d-want"></span>
+        <p><b>Click what you're chasing.</b> It waits as a ghost in your
+           slots, and everything you still need turns amber.</p>
+      </li>
+      <li>
+        <span class="s-dot d-have"></span>
+        <p><b>Shift-click what you get, as you get it.</b> Land a ball you
+           could build and its parts are consumed — same as the reactor.</p>
+      </li>
+      <li>
+        <span class="s-dot d-fuse"></span>
+        <p><b>Fuse (<kbd>X</kbd>) pairs any two balls.</b> If a pair evolves
+           instead, it says so.</p>
+      </li>
+    </ol>
+    <button class="intro-go" id="intro-go">Start planning</button>
+    <p class="intro-fine">
+      Unofficial fan tool, free and unaffiliated. Ball data from the
+      <a href="https://ballxpit.wiki.gg/wiki/Balls" target="_blank" rel="noopener">BALL x PIT Wiki</a>.
+    </p>
+  </div>
+</div>
+
+<div class="rack" id="rack"></div>
+
+<div class="howto">
+  <div class="modes" role="group" aria-label="What a click does">
+    <button class="mode is-on" data-mode="goal">Goals</button>
+    <button class="mode" data-mode="have">Have <kbd>H</kbd></button>
+    <button class="mode only-balls" data-mode="fuse">Fuse <kbd>X</kbd></button>
+  </div>
+  <span class="hint" id="modehint"></span>
+  <label class="dimtoggle"><input type="checkbox" id="dim" checked> Dim others</label>
+</div>
+
+<div class="legend">
+  <span class="lg lg-want">Goal</span>
+  <span class="lg lg-need">Needed</span>
+  <span class="lg lg-now">Buildable</span>
+  <span class="lg lg-have">Carrying</span>
+  <span class="lg lg-path">Step</span>
+  <span class="lg lg-soon">Reachable</span>
+</div>
+
+<div class="summary off" id="summary"></div>
+
+<main>
+  <section class="board" id="board">
+    <svg class="wires" id="wires" aria-hidden="true"></svg>
+    <div class="cols" id="cols"></div>
+  </section>
+
+  <aside class="panel" id="panel"></aside>
+</main>
+
+<footer>
+  Unofficial fan tool &mdash; free, and not affiliated with or endorsed by the developers.
+  Ball data from the <a href="https://ballxpit.wiki.gg/wiki/Balls" target="_blank" rel="noopener">BALL x PIT Wiki</a>,
+  used under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-SA&nbsp;4.0</a>.
+  Sprites and the game are &copy; <a href="https://kennysun.com/" target="_blank" rel="noopener">Kenny Sun</a> / Devolver Digital
+  and are <em>not</em> CC-licensed.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

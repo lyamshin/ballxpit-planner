@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1200px;height:630px;background:#0b0e14;color:#e6ebf5;
+       font:400 16px/1.5 -apple-system,"Helvetica Neue",sans-serif;
+       display:flex;flex-direction:column;justify-content:center;padding:0 68px;overflow:hidden;position:relative}
+  .glow{position:absolute;width:760px;height:760px;border-radius:50%;right:-230px;top:-200px;
+        background:radial-gradient(circle,rgba(192,132,252,.20),transparent 65%)}
+  .glow2{position:absolute;width:620px;height:620px;border-radius:50%;left:-190px;bottom:-260px;
+        background:radial-gradient(circle,rgba(56,189,248,.16),transparent 65%)}
+  .kicker{font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:#8d99b0;margin-bottom:14px}
+  .kicker b{color:#f472b6;font-weight:400}
+  h1{font-size:74px;line-height:1.02;letter-spacing:-1.5px;font-weight:700;margin-bottom:18px}
+  p{font-size:25px;line-height:1.4;color:#c3ccdd;max-width:860px;margin-bottom:32px}
+  .keys{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+  .k{display:flex;align-items:center;gap:10px;font-size:19px;color:#c3ccdd;
+     border:1px solid #232b3b;border-radius:999px;padding:9px 20px 9px 14px;background:#121722}
+  .dot{width:14px;height:14px;border-radius:4px}
+  .balls{display:flex;gap:12px;position:relative;z-index:2}
+  .t{width:74px;height:74px;border-radius:14px;background:#151b27;border:2px solid #222b3c;
+     display:flex;align-items:center;justify-content:center}
+  .t img{width:52px;height:52px;image-rendering:pixelated}
+  .t.a{border-color:#38bdf8;background:#0d2d40}
+  .t.b{border-color:#4ade80;background:#0f2e1d;box-shadow:0 0 22px -4px #4ade80}
+  .t.c{border-color:#fbbf24;background:#2e2410;box-shadow:0 0 22px -5px #fbbf24}
+  .t.d{border-color:#c084fc;background:#1e1430;box-shadow:0 0 26px -4px #c084fc}
+  .t.e{border-color:#f472b6;background:#2a1424}
+</style></head><body>
+  <div class="glow"></div><div class="glow2"></div>
+  <div class="kicker">BALL <b>x</b> PIT</div>
+  <h1>Run Planner</h1>
+  <p>Click what you're carrying, mark what you're chasing, and see every ball
+     you still need to roll.</p>
+  <div class="keys">
+    <span class="k"><i class="dot" style="background:#38bdf8"></i>Carrying</span>
+    <span class="k"><i class="dot" style="background:#4ade80"></i>Fuse now</span>
+    <span class="k"><i class="dot" style="background:#fbbf24"></i>Must pick up</span>
+    <span class="k"><i class="dot" style="background:#c084fc"></i>Goal</span>
+  </div>
+  <div class="balls">
+    <div class="t a"><img src="ICONS/vampire.png"></div>
+    <div class="t c"><img src="ICONS/brood-mother.png"></div>
+    <div class="t b"><img src="ICONS/sun.png"></div>
+    <div class="t a"><img src="ICONS/ghost.png"></div>
+    <div class="t c"><img src="ICONS/egg-sac.png"></div>
+    <div class="t e"><img src="ICONS/bleed.png"></div>
+    <div class="t d"><img src="ICONS/nosferatu.png"></div>
+  </div>
+</body></html>

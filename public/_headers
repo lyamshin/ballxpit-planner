@@ -1,0 +1,23 @@
+# Cloudflare Pages / Netlify read this. Harmless anywhere else.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Sprites change only when the wiki does and the filenames are stable,
+# so cache them hard but not forever - there is no hash in the name.
+/icons/*
+  Cache-Control: public, max-age=2592000
+
+/og.png
+  Cache-Control: public, max-age=604800
+
+# Regenerated whenever scripts/parse.py runs.
+/data/*
+  Cache-Control: public, max-age=3600
+
+# Always revalidate the shell so a deploy is visible immediately.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate

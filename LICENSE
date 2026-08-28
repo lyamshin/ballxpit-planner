@@ -1,0 +1,81 @@
+BALL x PIT Run Planner — licensing
+==================================
+
+This project is three different things under three different terms. They are
+separated here so anyone (including the game's author) can see exactly what is
+being claimed and what is not.
+
+
+1. THE CODE  —  MIT
+-------------------
+Applies to: public/index.html, public/app.js, public/style.css,
+public/favicon.svg, scripts/*.py, and this repository's documentation.
+
+Copyright (c) 2026 <YOUR NAME>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+2. THE BALL AND PASSIVE TEXT  —  CC BY-SA 4.0
+---------------------------------------------
+Applies to: the "description", "unlock", "requirement" and "recipeText" fields
+in public/data/balls.json and public/data/passives.json, and the wikitext kept
+in data/raw/.
+
+That text was written by contributors to the BALL x PIT Wiki
+(https://ballxpit.wiki.gg/) and is used under the Creative Commons
+Attribution-ShareAlike 4.0 International licence:
+
+    https://creativecommons.org/licenses/by-sa/4.0/
+
+Attribution: BALL x PIT Wiki contributors, https://ballxpit.wiki.gg/wiki/Balls
+Share-alike: this text, and any adaptation of it, stays under CC BY-SA 4.0.
+That obligation travels with the text regardless of how this site is funded.
+
+The recipes, tiers and names themselves are facts about the game and are not
+claimed by anyone here.
+
+
+3. THE SPRITES  —  NOT LICENSED. © Kenny Sun.
+---------------------------------------------
+Applies to: everything in public/icons/ and public/icons/passives/, and the
+sprites composited into public/og.png.
+
+These are game assets, not wiki content. The wiki's own file pages state:
+
+    "This file is owned by Kenny Sun and/or its licensors. All trademarks and
+     registered trademarks present in the file are proprietary to Kenny Sun
+     and/or its licensors."
+
+They are NOT covered by the wiki's CC BY-SA licence, and no licence to them is
+claimed or granted by this project. They are included because this is a free,
+unofficial fan tool for players of the game.
+
+If you are Kenny Sun, Devolver Digital, or a representative of either, and you
+would like these removed or changed, contact the repository owner and it will
+be done. The planner is built so the icon set can be swapped for an openly
+licensed one without touching the planning logic.
+
+
+TRADEMARKS
+----------
+"BALL x PIT" and the ball names are used descriptively, to refer to the game
+they belong to. This project is unofficial and unaffiliated, is not endorsed
+by Kenny Sun or Devolver Digital, and does not sell access to the game or to
+any part of it.

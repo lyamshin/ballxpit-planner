@@ -1,0 +1,929 @@
+{{Stub}}
+
+'''Balls''' are the ''main'' ''weapons'' you use to defeat enemies and clear levels in Ball X Pit.
+
+There are 2 types of balls: '''Special Balls''' and '''Baby Balls'''. Each ball inflicts [[damage]] of a certain type(s) and can additionally inflict certain [[Status Effects|status effects]] or have other special abilities, each of which can be additionally affected by various [[passives]]. Additionally, the various damage and ability numbers on this page can also be affected by the character's base [[stats]] as well as bonuses from [[Buildings#Completion Bonus|trophies]] or other [[Buildings|buildings]].
+
+TODO: Need to confirm damage type(s) and status effect(s), particularly WRT effects from passives
+== Baby Balls ==
+Baby Balls are regular, white balls that share the same damage and don't have any unique abilities. All [[characters]] start each run with a few of them (except for '''{{il|The Empty Nester}}''' and '''{{il|The Makeshift Sisyphus}}''') and some [[Passives]] can spawn Baby Balls. Their specific [[stats]] (Baby Ball Count and Baby Ball Damage) are affected by the {{s|l}} Leadership [[Attributes|attribute]].
+Some Special Balls, especially Fused Balls can spawn Baby Balls inheriting their ablilities, unlike characters's regular Baby Balls.
+
+{| class="sortable mw-collapsible wikitable"
+!Icon
+!Name
+!Description
+|-
+{{BallTableRow|Baby Ball}}
+|Base attack ball, no special abilities.
+|}
+
+== Special Balls ==
+Special Balls have a unique passive ability and can be level up and combined with other special balls during each run. Some Special Balls are unlocked by default, while others require reaching specific stages to unlock. They can be leveled up to level 3 in each run, improving their damage and abilities.
+
+
+To better understand abilitiy triggering rules, refer to the table below:
+
+{| class="wikitable"
+|+ How to trigger abilities?
+|-
+! Ablility Types !! Abilities !! Triggers
+|-
+| On-Hit Effects || Destroy, Pass Through, AOE, Spawn|| On-Hit only
+|-
+| Status Effects || Poison, Burn, Freeze etc. || On-Hit, On-Damage, On-Timer, On-Shoot, Spawn
+|-
+|}
+
+
+A ball's abilities consist of three aspects:
+
+On-Hit Effects: can be triggered by hit only. On-Hit Effects include Destroy, Pass through, AOE, and Spawn. 
+
+Status Triggers: the abilities to trigger Statues Effects. Status Triggers include On-Hit, AOE, On-Timer, On-Shoot, Spawn.
+
+Status Effects: can be triggerd by hit, AOE, Timer, Shoot, and Spawn. Status Effects include Instant Death(from black hole), Poison, Burn, Freeze etc..
+
+
+There are 4 types of On-Hit Effects:
+
+Pass Through: Balls pass thourgh the target, ideal for hitting multiple targets.
+
+Destroy: Balls destroy after hit. Though regarded as the least‑favoured type, these balls are usually having powerful abilities. Note: fusing two Destroy balls may lose one of their abililies.
+
+AOE: Radiation from Nuclear Bomb, etc..
+
+Spawn: Spawn Clones, Baby balls or Summons.
+
+
+There are 5 Status Triggers:
+
+On-Hit: when balls hit target. 
+
+AOE: when balls deal damage. Note: Radiation from Nuclear Bomb counts as AOE, thus can trigger Status Effect.
+
+On-Timer: Trigger at fixed time-intervals.
+
+On-Shoot: when balls "shoot". Spawned balls don't count as "shoot".
+
+Spawn: Spawn Clones, Baby balls or Summons. Spawns can provide bonus triggers. 
+
+
+There are 3 types of Special Balls: '''Base Balls''', '''Fused Balls''' and '''Evolved Balls.'''
+
+=== Base Balls ===
+Base Balls are Special Balls that can be offered to you when you level up during a run, as long as you have them unlocked. There are a total of 21 Base Balls in the game currently, and every character has an assigned Base Ball that they start the run with. Certain base balls are unavailable at the start of the game and can only be unlocked for use by completing certain [[levels|pit levels]].
+{| class="sortable mw-collapsible wikitable trackable" id="base-balls"
+!Icon
+!Name
+!Description
+!Character
+!Unlock Condition
+!On-Hit Effect(s)
+!Status Trigger(s)
+!Status Effect(s)
+|-
+{{BallTableRow|Bleed}}
+|Inflicts 2 stacks of bleed. Bleeding enemies receive 1 damage per stack when hit by a ball (max 8 stacks).
+|{{il|The Warrior}}
+{{il|The False Messiah}}
+|N/A
+Unlocked by default
+|N/A
+|On-Hit
+|Bleed
+|-
+{{BallTableRow|Brood Mother}}
+|Has a 25% chance of birthing a baby ball each time it hits an enemy.
+|{{il|The Cohabitants}}
+|N/A
+Unlocked by default
+|Spawn
+|On-Hit
+Spawn
+|Baby Ball Spawn
+|-
+{{BallTableRow|Burn}}
+|Add 1 stack of burn on hit for 3 seconds (max 3 stacks). Burnt units are dealt 4-8 damage per stack per second.
+|{{il|The Itchy Finger}}
+|N/A
+Unlocked by default
+|N/A
+|On-Hit
+|Burn
+|-
+{{BallTableRow|Cell}}
+|Splits into a clone on hit 2 times.
+|N/A
+|Clear {{il|The FUNGALxFOREST}}
+|Spawn
+|On-Hit
+Clone
+|Clone
+|-
+{{BallTableRow|Charm}}
+|Each hit has a 4% chance of charming the enemy for 5 seconds. Charmed units walk up the board and attack enemies.
+|{{il|The Carouser}}
+|Clear {{il|The HEAVENLYxGATES}}
+|N/A
+|On-Hit
+|Charm
+|-
+{{BallTableRow|Dark}}
+|Deals 3.0x damage but destroys itself after hitting an enemy. Has a 3 second cooldown before it can be shot again.
+|{{il|The Shade}}
+|Clear {{il|The BONExYARD}}
+|Destroy
+|On-Hit
+|N/A
+|-
+{{BallTableRow|Earthquake}}
+|Deals 5-13 damage to nearby units in a 3x3 tile square.
+|{{il|The Makeshift Sisyphus}}
+{{il|The Tunneller}}
+|N/A
+Unlocked by default
+|AOE
+|On-Hit
+AOE
+|N/A
+|-
+{{BallTableRow|Egg Sac}}
+|Explodes into 2-4 baby balls on hitting an enemy. Has a 3 second cooldown before it can be shot again.
+|{{il|The Flagellant}}
+|N/A
+Unlocked by default
+|Destroy
+Spawn
+|On-Hit
+Baby Ball
+|Baby Ball Spawn
+|-
+{{BallTableRow|Flesh}}
+|Speed increases by 25% per bounce.
+|N/A
+|Clear {{il|The GORYxGRASSLANDS}}
+|N/A
+|On-Hit
+|N/A
+|-
+{{BallTableRow|Freeze}}
+|Has a 4% chance to freeze enemies for 5.0 seconds. Frozen enemies receive 25% more damage.
+|{{il|The Repentant}}
+|N/A
+Unlocked by default
+|N/A
+|On-Hit
+|Freeze
+|-
+{{BallTableRow|Ghost}}
+|Passes through enemies.
+|{{il|The Empty Nester}}
+|N/A
+Unlocked by default
+|Pass Through
+|On-Hit
+|N/A
+|-
+{{BallTableRow|Iron}}
+|Deals double damage but moves 40% slower.
+|{{il|The Shieldbearer}}
+{{il|The Tactician}}
+|N/A
+Unlocked by default
+|N/A
+|On-Hit
+|N/A
+|-
+{{BallTableRow|Laser (Horizontal)}}
+|Deals 9-18 damage to all enemies in the same row.
+|{{il|The Tiptoer}}
+|N/A
+Unlocked by default
+|AOE
+|On-Hit
+AOE
+|N/A
+|-
+{{BallTableRow|Laser (Vertical)}}
+|Deals 9-18 damage to all enemies in the same column.
+|{{il|The Cogitator}}
+|N/A
+Unlocked by default
+|AOE
+|On-Hit
+AOE
+|N/A
+|-
+{{BallTableRow|Light}}
+|Blinds enemies on hit for 3 seconds. Blinded units have a hard time detecting you and have a 50% chance of missing when they attack.
+|{{il|The Physicist}}
+|Clear {{il|The LIMINALxDESERT}}
+|N/A
+|On-Hit
+|Blind
+|-
+{{BallTableRow|Lightning}}
+|Deals 1-20 damage to up to 3 nearby enemies.
+|{{il|The Juggler}}
+{{il|The Falconer}}
+|N/A
+Unlocked by default
+|AOE
+|On-Hit
+AOE
+|N/A
+|-
+{{BallTableRow|Stone_(Ball)|Stone}}
+|Initially deals 300% damage. Damage erodes by 40% each time hitting an enemy (minimum 50%).
+|N/A
+|Clear {{il|The SNOWYxSHORES}}
+|N/A
+|On-Hit
+|N/A
+|-
+{{BallTableRow|Poison}}
+|Applies 1 stack of poison on hit (max 5 stacks). Poison lasts for 6 seconds and each stack deals 1-4 damage per second.
+|{{il|The Embedded}}
+|N/A
+Unlocked by default
+|N/A
+|On-Hit
+|Poison
+|-
+{{BallTableRow|Time}}
+|Explodes into a time snare upon hitting an enemy, which stays on the field for 20 seconds and freezes enemies inside it.
+|N/A
+|Clear {{il|The SMOLDERINGxDEPTHS}}
+|Destroy
+|On-Hit
+AOE
+|Time Snare
+|-
+{{BallTableRow|Vampire}}
+|Each hit has a 4.5% chance of healing 1 health.
+|{{il|The Spendthrift}}
+|N/A
+Unlocked by default
+|N/A
+|On-Hit
+|Heal
+|-
+{{BallTableRow|Wind}}
+|Passes through enemies and slows them down by 30% for 5 seconds, but deals 25% less damage.
+|{{il|The Radical}}
+|N/A
+Unlocked by default
+|Pass through
+|On-Hit
+|Slow
+|}
+
+=== Fused Balls ===
+{{main|Fusion Mechanics}}
+
+Before fusing balls, take this into account:
+{| class="wikitable"
+|+ General Rules for Abilities
+|-
+! Aspect !! Ability Type
+|-
+| On-Hit Effects || Pass Through/Destroy, AOE, Spawn
+|-
+| Status Triggers || On-Hit,AOE, On-Timer, On-Shoot, Spawn
+|-
+| Status Effect || Instant kill, Bleeding, etc.
+|}
+
+Spawn is arguably the best ability. It can compensate Destroy effect. For example, Cell(Clone) x Bomb(Destroy) is an "indestructible" bomb, since the bomb is cloned and destroyed at the same time.
+
+Full Screen Trigger is the best option to trigger Status Effect. 
+
+[[File:BleedXFreeze.png|thumb|alt=Fusion Ball Example (BleedXFreeze)|470x470px|Example for fusing Bleed and Freeze Balls]]
+Fused Balls are balls that are created by fusing 2 other ''"unfused"'' level 3 Special Balls together using the [[Fusion Reactor|'''Fusion Reactor''']]. You can fuse 2 Base Balls, 2 Evolved Balls or even 1 Base Ball and 1 Evolved Ball together. However, the same ball cannot be fused with itself, and if 2 balls can otherwise combine into an Evolved Ball, then you '''can't fuse them''' and can only evolve them instead (although this does not apply for pairs of Special Balls whose only common evolution requires 3 or more Special Balls at the same time, such as {{il|Nosferatu}} or {{il|Elemental}}). As a result, there are <code>(90*89) {Special Ball Combos} - 89 {Evolution Combos} = 7921</code> potential functionally different fused balls.
+
+Fused Balls will have the name and effects of their fused balls combined, and their icon will also be updated to match the fusion. For example, fusing '''Bleed''' and '''Freeze''' will result in '''Bleed X Freeze''', which has both abilities from '''Bleed''' and '''Freeze'''. The priority of which effects and stats are combined are dependent on the component balls involved. Additionally, unlike with evolved balls, while '''the order of the fused balls does not change the functional stats/abilities of the resulting ball''', its name will be different and its appearance ''may'' be different depending on the specific balls fused (e.g. '''Egg Sac X Poison''' looks the same as '''Poison X Egg Sac''', however '''Spider Queen X Vampire Lord''' has a completely different sprite from '''Vampire Lord X Spider Queen'''). Note that the only way to change the order of fused balls is to change the order in which they're acquired, and one cannot manually select the order of balls for fusion at this time,
+<gallery>
+Fusion_Example_Egg_Sac_x_Poison.jpg|Egg Sac X Poison
+Fusion_Example_Poison_x_Egg_Sac.jpg|Poison X Egg Sac
+Fusion_Example_Spider_Queen_x_Vampire_Lord.jpg|Spider Queen X Vampire Lord
+Fusion_Example_Vampire_Lord_x_Spider_Queen.jpg|Vampire Lord X Spider Queen
+</gallery>
+
+=== Evolved Balls ===
+Evolved Balls are balls that are created by 2 or more specific level 3 Base or Evolved Balls together using the '''[[Fusion Reactor]]'''. These balls have their own unique name and abilities, and they can still be further fused (or even evolved again) with other balls. Some Evolved Balls can be created from more than 1 specific combination (e.g. '''Assassin''' can be created by combining ''Iron + Ghost'' '''''OR''''' ''Iron + Dark''), and note that the order of the balls '''does not''' affect the resulting evolved ball. 
+
+There are a total of 69 Evolved Balls in the game currently.
+
+<div id="evoball-filter" class="evoball-filter"></div>
+
+{| class="sortable wikitable trackable" id="evo-balls"
+!Icon
+!Name
+!Description
+!Combination
+!On-Hit Effect(s)
+!Status Trigger(s)
+!Status Effect(s)
+!Can be evolved further
+|- data-basics="Burn, Lightning, Time, Wind" data-intermediates="Inferno, Storm"
+{{BallTableRow|Armageddon}}
+|Creates a meteor shower upon hitting an enemy. The meteor shower lasts for 5 seconds and deals 30-50 damage / second to enemies within a 3 tile radius.
+|{{BallLink|Inferno}} + {{BallLink|Storm}}
+|Destroy
+AOE
+|On-Hit
+AOE
+|N/A
+|No
+|- data-basics="Dark, Ghost, Iron" data-intermediates="Assassin"
+{{BallTableRow|Assassin}}
+|Passes through the front of enemies, but not the back. Backstabs deal 30% bonus damage.
+|{{BallLink|Iron}} + ({{BallLink|Ghost}} or {{BallLink|Dark}})
+|Pass Through
+|On-Hit
+|N/A
+|Yes, into {{BallLink|Sniper}} with {{BallLink|Shotgun}}
+|- data-basics="Burn, Dark"
+{{BallTableRow|Banished Flame}}
+|Add 1 stack of darkflame on hit for 2 seconds (max 6 stacks). Darkflame deals 1-30 damage per stack per second. When the darkflame goes out, it deals 1-100 to the enemy.
+|{{BallLink|Dark}} + {{BallLink|Burn}}
+|N/A
+|On-Hit
+|Darkflame
+|No
+|- data-basics="Dark, Freeze, Ghost" data-intermediates="Phantom, Wraith"
+{{BallTableRow|Banshee}}
+|Curses all enemies while on the field when launched. Cursed enemies are dealt 150-300 after being hit 6 times.
+|{{BallLink|Phantom}} + {{BallLink|Wraith}}
+|N/A
+|On-Hit
+On-Shoot
+|Curse
+|No
+|- data-basics="Bleed, Burn, Charm"
+{{BallTableRow|Berserk}}
+|Each hit has a 30% chance of causing enemies to go berserk for 6 seconds. Berserk enemies deal 15-24 damage to adjacent enemies every second
+|{{BallLink|Charm}} + ({{BallLink|Bleed}} or {{BallLink|Burn}})
+|N/A
+|On-Hit
+|Berserk
+|No
+|- data-basics="Burn, Dark, Light, Time" data-intermediates="Sun"
+{{BallTableRow|Black Hole}}
+|Instantly kills the first non-boss enemy that it hits, but destroys itself afterwards. Has a 7 second cooldown before it can be shot again
+|{{BallLink|Sun}} + ({{BallLink|Dark}} or {{BallLink|Time}})
+|Destroy
+|On-Hit
+|Instant Kill
+|No
+|- data-basics="Freeze, Lightning, Wind"
+{{BallTableRow|Blizzard}}
+|Freezes all enemies within a 2 tile radius for 0.8 seconds, dealing 1-50 damage
+|{{BallLink|Freeze}} + ({{BallLink|Wind}} or {{BallLink|Lightning}})
+|N/A
+|On-Hit
+AOE
+|Freeze
+|No
+|- data-basics="Burn, Iron" data-intermediates="Bomb"
+{{BallTableRow|Bomb}}
+|Explodes when hitting an enemy, dealing 150-300 damage to nearby enemies. Has a 3 second cooldown before it can be shot again
+|{{BallLink|Burn}} + {{BallLink|Iron}}
+|Destroy
+|On-Hit
+AOE
+|N/A
+|Yes, to {{BallLink|Nuclear Bomb}} with {{BallLink|Poison}}. Or into {{BallLink|Time Bomb}} with {{BallLink|Time}}
+|- data-basics="Burn, Poison, Stone"
+{{BallTableRow|Brimstone}}
+|Applies 1 stack of burn and poison every second to all enemies within a 2 tile radius (max 4 stacks). Burn deals 1-4 damage per stack per second and poison deals 2-3 damage per stack per second.
+|({{BallLink|Stone_(Ball)|Stone}} or {{BallLink|Poison}}) + {{BallLink|Burn}}
+|N/A
+|On-Hit
+On-Timer
+|Burn, Poison
+|No
+|- data-basics="Egg Sac, Stone"
+{{BallTableRow|Catapult}}
+|Launches 3-5 stone baby balls every 1.5 seconds, which are destroyed after hitting anything.
+|{{BallLink|Stone_(Ball)|Stone}} + {{BallLink|Egg Sac}}
+|N/A
+|On-Hit
+Spawn
+|Baby Ball Spawn
+|No
+|- data-basics="Earthquake, Iron"
+{{BallTableRow|Drill}}
+|Pierces enemies and deals 50% bonus damage until reaching the back of the field.
+|{{BallLink|Earthquake}} + {{BallLink|Iron}}
+|Pass Through
+|On-Hit
+|N/A
+|No
+|- data-basics="Burn, Earthquake, Freeze, Wind"
+{{BallTableRow|Elemental}}
+|Applies a random status effect (burn, slow, or freeze) to nearby enemies on hit.
+|{{BallLink|Burn}} + {{BallLink|Wind}} + {{BallLink|Freeze}} + {{BallLink|Earthquake}}
+|N/A
+|On-Hit
+|Burn, Slow, Freeze
+|No
+|- data-basics="Time, Wind"
+{{BallTableRow|Erosion}}
+|Passes through enemies. Deals 3% of enemy's current health as bonus damage on hit.
+|{{BallLink|Time}} + {{BallLink|Wind}}
+|Pass Through
+|On-Hit
+|?
+|No
+|- data-basics="Burn, Egg Sac"
+{{BallTableRow|Fireworks}}
+|Explodes into 3-6 fireworks. Fireworks target random enemies, dealing 20-30 damage and applying 1 stack of burn. Burnt units are dealt 7-11 damage per stack per second.
+|{{BallLink|Burn}} + {{BallLink|Egg Sac}}
+|Destroy
+|On-Hit
+Spawn
+|Firework Spawn, Burn
+|No
+|- data-basics="Light, Lightning"
+{{BallTableRow|Flash}}
+|Damage all enemies on screen for 1-3 damage after hitting an enemy and blind them for 2 seconds
+|{{BallLink|Lightning}} + {{BallLink|Light}}
+|N/A
+|On-Hit
+AOE(full screen)
+|Blind
+|No
+|- data-basics="Brood Mother, Flesh"
+{{BallTableRow|Flesh Mound}}
+|Emites a fleshy baby ball in a random direction every 1.0 seconds.
+|{{BallLink|Brood Mother}} + {{BallLink|Flesh}}
+|N/A
+|On-Hit
+On-Timer Spawn
+|Fleshy Baby Ball Spawn
+|No
+|- data-basics="Dark, Light"
+{{BallTableRow|Flicker}}
+|Deals 1-7 damage to every enemy on screen every 1.4 seconds
+|{{BallLink|Light}} + {{BallLink|Dark}}
+|N/A
+|On-Hit
+On-Timer
+|N/A
+|No
+|- data-basics="Freeze, Laser (Horizontal), Laser (Vertical)"
+{{BallTableRow|Freeze Ray}}
+|Emits a freeze ray when hitting an enemy, dealing 20-50 to all enemies in its path, with a 10% chance of freezing them for 10.0 seconds
+|{{BallLink|Freeze}} + ({{BallLink|Laser (Horizontal)}} or {{BallLink|Laser (Vertical)}})
+|N/A
+|On-Hit
+AOE
+|Freeze
+|No
+|- data-basics="Burn, Freeze"
+{{BallTableRow|Frozen Flame}}
+|Add 1 stack of frostburn on hit for 20 seconds (max 4 stacks). Frostburnt units are dealt 8-12 damage per stack per second and receive 25% more damage from other sources
+|{{BallLink|Burn}} + {{BallLink|Freeze}}
+|N/A
+|On-Hit
+|Frostburn
+|No
+|- data-basics="Earthquake, Freeze, Stone"
+{{BallTableRow|Glacier}}
+|Releases glacial spikes over time that deal 15-30 to enemies that touch them and freeze them for 2.0 seconds. This ball and its glacial spikes also deal 6-12 damage to nearby units
+|{{BallLink|Freeze}} + ({{BallLink|Earthquake}} or {{BallLink|Stone (Ball)|Stone}})
+|N/A
+|On-Hit
+AOE
+On-Timer
+|Freeze
+|No
+|- data-basics="Bleed, Ghost" data-intermediates="Heart Swallower"
+{{BallTableRow|Heart Swallower}}
+|Saps enemies on hit, with a 40% chance of stealing 1 health and reducing their attack damage by 20%. Lifesteal chance only applies once per enemy.
+|{{BallLink|Bleed}} + {{BallLink|Ghost}}
+|N/A
+|On-Hit
+|Lifesteal, Attack Down
+|Yes, into {{BallLink|Reaper}} with {{BallLink|Soul Sucker}}
+|- data-basics="Bleed, Flesh, Iron"
+{{BallTableRow|Hemorrhage}}
+|Inflicts 3 stacks of bleed. When hitting an enemy with 12 stacks of bleed or more, consumes all stacks of bleed to deal 20% of their current health
+|{{BallLink|Bleed}} + ({{BallLink|Iron}} or {{BallLink|Flesh}})
+|N/A
+|On-Hit
+|Bleed
+|No
+|- data-basics="Laser (Horizontal), Laser (Vertical)" data-intermediates="Holy Laser"
+{{BallTableRow|Holy Laser}}
+|Deals 24-36 damage to all enemies in the same row and column
+|{{BallLink|Laser (Horizontal)}} + {{BallLink|Laser (Vertical)}}
+|N/A
+|On-Hit
+AOE
+|N/A
+|Yes, into {{BallLink|X Ray}} with {{BallLink|Laser Beam}}
+|- data-basics="Charm, Dark" data-intermediates="Incubus"
+{{BallTableRow|Incubus}}
+|Each hit has a 4% chance of charming the enemy for 9 seconds. Charmed enemies curse nearby enemies. Cursed enemies are dealt 100-200 after being hit 5 times
+|{{BallLink|Charm}} + {{BallLink|Dark}}
+|N/A
+|On-Hit
+?
+|Charm, Curse
+|Yes, into {{BallLink|Satan}} with {{BallLink|Succubus}}
+|- data-basics="Burn, Time, Wind" data-intermediates="Inferno"
+{{BallTableRow|Inferno}}
+|Applies 1 stack of burn every second to all enemies within a 2 tile radius. Burn lasts for 6 seconds, dealing 3-7 damage per stack per seconds
+|{{BallLink|Burn}} + ({{BallLink|Wind}} or {{BallLink|Time}})
+|N/A
+|On-Hit
+On-Timer
+|Burn
+|Yes, into {{BallLink|Armageddon}} with {{BallLink|Storm}}
+|- data-basics="Earthquake, Stone"
+{{BallTableRow|Landslide}}
+|Creates a landslide and destroys self upon hitting an enemy. The landslide lasts for 5 seconds and deals 20-30 damage per second to enemies within a 2 tile radius
+|{{BallLink|Stone_(Ball)|Stone}} + {{BallLink|Earthquake}}
+|Destroy
+|On-Hit
+AOE
+|Landslide
+|No
+|- data-basics="Laser (Horizontal), Laser (Vertical), Light" data-intermediates="Laser Beam"
+{{BallTableRow|Laser Beam}}
+|Emit a laser beam on hit that deals 30-42 damage and blinds enemies for 8 seconds
+|{{BallLink|Light}} + ({{BallLink|Laser (Horizontal)}} or {{BallLink|Laser (Vertical)}})
+|N/A
+|On-Hit
+AOE
+|Blind
+|Yes, into {{BallLink|X Ray}} with {{BallLink|Holy Laser}}
+|- data-basics="Iron, Laser (Horizontal), Laser (Vertical), Stone" data-intermediates="Steel"
+{{BallTableRow|Laser Cutter}}
+|Constantly emits a laser in front of it, which deals 100-150 damage per second.
+|({{BallLink|Laser (Horizontal)}} or {{BallLink|Laser (Vertical)}}) + {{BallLink|Steel}}
+|?
+|?
+|N/A
+|No
+|- data-basics="Bleed, Brood Mother"
+{{BallTableRow|Leech}}
+|Attaches up to 1 leech onto enemies it hits, which add 2 stacks of bleed per seconds (max 24 stacks)
+|{{BallLink|Brood Mother}} + {{BallLink|Bleed}}
+|N/A
+|On-Hit
+|Leech, Bleed
+|No
+|- data-basics="Brood Mother, Lightning"
+{{BallTableRow|Lightning Bug}}
+|Spawns a lightning bug each time it hits an enemy. Lightning bugs attack a random enemy, dealing 1-80 damage to up to 3 nearby enemies.
+|{{BallLink|Lightning}} + {{BallLink|Brood Mother}}
+|N/A
+|On-Hit
+Spawn
+|Lightning bug spawn
+|No
+|- data-basics="Iron, Lightning"
+{{BallTableRow|Lightning Rod}}
+|Plants a lightning rod into enemies it hits. These enemies are struck by lightning every 3.0 seconds, dealing 1-30 damage to up to 8 nearby enemies
+|{{BallLink|Lightning}} + {{BallLink|Iron}}
+|N/A
+|On-Hit
+AOE
+|Lightning Rod
+|No
+|- data-basics="Charm, Light, Lightning, Time"
+{{BallTableRow|Lovestruck}}
+|Inflicts lovestruck on hit enemies for 20 seconds. Lovestruck units have a 50% chance of healing you for 5 health when they attack
+|{{BallLink|Charm}} + ({{BallLink|Light}} or {{BallLink|Lightning}} or {{BallLink|Time}})
+|N/A
+|On-Hit
+|Lovestruc
+|No
+|- data-basics="Brood Mother, Cell"
+{{BallTableRow|Maggot}}
+|Infest enemies on hit with maggots. When they dies, they explode into 1-2 baby balls
+|{{BallLink|Brood Mother}} + {{BallLink|Cell}}
+|N/A
+|On-Hit
+Spawn
+|Infest, Baby Ball Spawn
+|No
+|- data-basics="Burn, Earthquake"
+{{BallTableRow|Magma}}
+|Emits lava blobs over time. Enemies who walk into lava blobs are dealt 15-30 damage and gain 1 stack of burn (max 3 stacks). Burn lasts for 3 seconds, dealing 3-8 damage per stack per second. This ball and its lava blobs also deal 6-12 damage to nearby units
+|{{BallLink|Burn}} + {{BallLink|Earthquake}}
+|N/A
+|On-Hit
+On-Timer
+|Burn
+|No
+|- data-basics="Brood Mother, Vampire" data-intermediates="Mosquito King"
+{{BallTableRow|Mosquito King}}
+|Spawns a mosquito each time it hits an enemy. Mosquitos attack a random enemy, dealing 80-120 damage each. If a mosquito kills an enemy, they steal 1 health
+|{{BallLink|Vampire}} + {{BallLink|Brood Mother}}
+|N/A
+|On-Hit
+Spawn
+|Mosquito Spawn, Lifesteal
+|Yes, to {{BallLink|Nosferatu}} together with both {{BallLink|Vampire Lord}} and {{BallLink|Spider Queen}}, and to {{BallLink|Mosquito Kingdom}} together with {{BallLink|Mosquito Swarm}}
+|- data-basics="Brood Mother, Egg Sac, Vampire" data-intermediates="Mosquito King, Mosquito Swarm"
+{{BallTableRow|Mosquito Kingdom}}
+|Spawns 1-2 mosquitos each time it hits an enemy. Mosquitos attack a random enemy, dealing 100-150 damage each. If a mosquito kills an enemy, they steal 2 health.
+|{{BallLink|Mosquito King}} + {{BallLink|Mosquito Swarm}}
+|N/A
+|On-Hit
+Spawn
+|Mosquito Spawn, Lifesteal
+|No
+|- data-basics="Egg Sac, Vampire" data-intermediates="Mosquito Swarm"
+{{BallTableRow|Mosquito Swarm}}
+|Explodes into 3-6 mosquitos. Mosquitos attack random enemies, dealing 80-120 damage each. If a mosquito kills an enemy, they steal 1 health
+|{{BallLink|Vampire}} + {{BallLink|Egg Sac}}
+|Destroy
+|On-Hit
+Spawn
+|Mosquito Spawn, Lifesteal
+|Yes, to {{BallLink|Mosquito Kingdom}} together with {{BallLink|Mosquito King}}
+|- data-basics="Bleed, Brood Mother, Dark, Egg Sac, Vampire" data-intermediates="Mosquito King, Spider Queen, Vampire Lord"
+{{BallTableRow|Nosferatu}}
+|Spawns a vampire bat each bounce. Vampire bats fly towards a random enemy, dealing 132-176 damage on hit, turning into a Vampire Lord
+|{{BallLink|Vampire Lord}} + {{BallLink|Spider Queen}} + {{BallLink|Mosquito King}}
+|N/A
+|On-Hit
+Spawn
+|Vampire Bat Spawn
+|No
+|- data-basics="Dark, Poison, Wind"
+{{BallTableRow|Noxious}}
+|Passes through enemies and applies 3 stacks of poison to nearby enemies within a 2 tile radius. Poison lasts for 4 seconds and each stack deals 1-3 damage per second
+|{{BallLink|Wind}} + ({{BallLink|Poison}} or {{BallLink|Dark}})
+|Pass Through
+|On-Hit
+AOE
+|Poison
+|No
+|- data-basics="Burn, Iron, Poison" data-intermediates="Bomb"
+{{BallTableRow|Nuclear Bomb}}
+|Explodes when hitting an enemy, dealing 300-500 damage to nearby enemies and applying 1 stack of radiation to everyone present indefinitely (max 5 stacks). Each stack of radiation increases damage received by 10%. Has a 3 second cooldown
+|{{BallLink|Bomb}} + {{BallLink|Poison}}
+|Destroy
+|On-Hit
+AOE
+AOE(full screen)
+|No
+|No
+|- data-basics="Cell, Flesh"
+{{BallTableRow|Offspring}}
+|Splits into a clone on hit 4 times.
+|{{BallLink|Cell}} + {{BallLink|Flesh}}
+|N/A
+|On-Hit
+Spawn
+|Clone
+|No
+|- data-basics="Cell, Earthquake"
+{{BallTableRow|Overgrowth}}
+|Applies 1 stack of overgrowth. Upon reaching 3, consume all stacks and deal 150-200 damage to all enemies in a 3x3 tile square
+|{{BallLink|Earthquake}} + {{BallLink|Cell}}
+|N/A
+|On-Hit
+AOE?
+|Overgrowth
+|No
+|- data-basics="Flesh, Stone"
+{{BallTableRow|Petrify}}
+|Petrifies all enemies within its sightline for 1.5 seconds when first launched, dealing 50-120.
+|{{BallLink|Stone (Ball)|Stone}} + {{BallLink|Flesh}}
+|N/A
+|On-Hit
+On-Shoot
+|Petrify
+|No
+|- data-basics="Dark, Ghost" data-intermediates="Phantom"
+{{BallTableRow|Phantom}}
+|Curse enemies on hit. Cursed enemies are dealt 100-200 damage after being hit 5 times
+|{{BallLink|Dark}} + {{BallLink|Ghost}}
+|N/A
+|On-Hit
+|Curse
+|Yes, to {{BallLink|Banshee}} together with {{BallLink|Wraith}}
+|- data-basics="Cell, Laser (Horizontal), Laser (Vertical), Poison" data-intermediates="Radiation Beam"
+{{BallTableRow|Radiation Beam}}
+|Emit a radiation beam on hit that deals 24-48 damage and applies 1 stack of radiation (max 5 stacks). Radiation lasts for 15 seconds and cause enemies to receive 10% more damage from all sources per stack
+|({{BallLink|Laser (Horizontal)}} or {{BallLink|Laser (Vertical)}}) + ({{BallLink|Poison}} or {{BallLink|Cell}})
+|N/A
+|On-Hit
+AOE
+|Radiation
+|Yes, into {{BallLink|Tumor}} with {{BallLink|Flesh}}
+|- data-basics="Bleed, Ghost, Vampire" data-intermediates="Heart Swallower, Soul Sucker"
+{{BallTableRow|Reaper}}
+|Has a 10% chance to kill enemies on impact, healing you for 5 health.
+|{{BallLink|Soul Sucker}} + {{BallLink|Heart Swallower}}
+|N/A
+|On-Hit
+|Instant Kill
+|No
+|- data-basics="Bleed, Dark"
+{{BallTableRow|Sacrifice}}
+|Inflicts 4 stacks of bleed (max 15 stacks) and applies curse to hit enemies. Cursed enemies are dealt 50-100 after being hit 5 times
+|{{BallLink|Bleed}} + {{BallLink|Dark}}
+|N/A
+|On-Hit
+|Bleed, Curse
+|No
+|- data-basics="Earthquake, Stone, Wind"
+{{BallTableRow|Sandstorm}}
+|Goes through enemies and is surrounded by a raging storm dealing 10-20 damage per second and blinding nearby enemies for 3 seconds
+|({{BallLink|Earthquake}} or {{BallLink|Stone (Ball)|Stone}}) + {{BallLink|Wind}}
+|Pass Through
+|On-Hit
+On-Timer
+|Blind
+|No
+|- data-basics="Charm, Dark, Vampire" data-intermediates="Incubus, Succubus"
+{{BallTableRow|Satan}}
+|While active, add 1 stack of burn to all active enemies per second (max 5 stacks), dealing 10-20 damage per stack per second and make them go berserk, dealing 15-24 damage to adjacent enemies every second
+|{{BallLink|Incubus}} + {{BallLink|Succubus}}
+|N/A
+|On-Hit
+On-Timer
+|Burn, Berserk
+|No
+|- data-basics="Egg Sac, Iron" data-intermediates="Shotgun"
+{{BallTableRow|Shotgun}}
+|Shoots 3-7 iron baby balls after hitting a wall. Iron baby balls move at 200% speed but are destroyed upon hitting anything
+|{{BallLink|Iron}} + {{BallLink|Egg Sac}}
+|N/A
+|On-Hit
+Spawn
+|Baby Ball Spawn
+|Yes, into {{BallLink|Sniper}} with {{BallLink|Assassin}}
+|- data-basics="Dark, Egg Sac, Ghost, Iron" data-intermediates="Assassin, Shotgun"
+{{BallTableRow|Sniper}}
+|Pierces enemies and shoots 3-7 sniper baby balls after hitting a wall. Sniper baby balls pierce enemies but are destroyed upon hitting a wall.
+|{{BallLink|Shotgun}} + {{BallLink|Assassin}}
+|Pass Through
+|On-Hit
+Spawn
+|Sniper Baby Ball Spawn
+|No
+|- data-basics="Ghost, Vampire" data-intermediates="Soul Sucker"
+{{BallTableRow|Soul Sucker}}
+|Passes through enemies and saps them, with a 30% chance of stealing 1 health and reducing their attack damage by 20%. Lifesteal chance only applies once per enemy
+|{{BallLink|Vampire}} + {{BallLink|Ghost}}
+|Pass Through
+|On-Hit
+|Lifesteal, Attack Down
+|Yes, into {{BallLink|Reaper}} with {{BallLink|Heart Swallower}}
+|- data-basics="Brood Mother, Egg Sac" data-intermediates="Spider Queen"
+{{BallTableRow|Spider Queen}}
+|Has a 25% chance of birthing an Egg Sac each time it hits an enemy
+|{{BallLink|Brood Mother}} + {{BallLink|Egg Sac}}
+|N/A
+|On-Hit
+Spawn
+|Baby Ball Spawn
+|Yes, to {{BallLink|Nosferatu}} together with both {{BallLink|Vampire Lord}} and {{BallLink|Mosquito King}}
+|- data-basics="Iron, Stone" data-intermediates="Steel"
+{{BallTableRow|Steel}}
+|Initially deals double damage but moves 50% slower. Damage increases by 10% each time it hits an enemy (max 300%).
+|{{BallLink|Iron}} + {{BallLink|Stone_(Ball)|Stone}}
+|N/A
+|On-Hit
+|N/A
+|Yes, into {{BallLink|Laser Cutter}} with {{BallLink|Laser (Horizontal)}} or {{BallLink|Laser (Vertical)}}
+|- data-basics="Lightning, Wind" data-intermediates="Storm"
+{{BallTableRow|Storm}}
+|Emits lightning to strike nearby enemies every second, dealing 1-40 damage
+|{{BallLink|Lightning}} + {{BallLink|Wind}}
+|N/A
+|On-Hit
+On-Timer
+|N/A
+|Yes, into {{BallLink|Armageddon}} with {{BallLink|Inferno}}
+|- data-basics="Charm, Vampire" data-intermediates="Succubus"
+{{BallTableRow|Succubus}}
+|Each hit has a 4% chance of charming the enemy for 9 seconds. Heals 1 when hitting a charmed enemy
+|{{BallLink|Charm}} + {{BallLink|Vampire}}
+|N/A
+|On-Hit
+|Charm
+|Yes, into {{BallLink|Satan}} with {{BallLink|Incubus}}
+|- data-basics="Burn, Light" data-intermediates="Sun"
+{{BallTableRow|Sun}}
+|Blind all enemies in view and add 1 stack of burn every second (max 5 stacks). Burn lasts for 6 seconds and deals 6-12 damage per stack per second
+|{{BallLink|Burn}} + {{BallLink|Light}}
+|N/A
+|On-Hit
+On-Timer
+|Blind, Burn
+|Yes, into {{BallLink|Black Hole}} with {{BallLink|Dark}} or {{BallLink|Time}}
+|- data-basics="Earthquake, Poison"
+{{BallTableRow|Swamp}}
+|Leaves behind tar blobs over time. Enemies who walk into tar blobs are dealt 15-30, are slowed by 50% for 7 seconds and gain 1 stack of poison (max 8 stacks). Each stack of poison deals 1-3 damage per second. This ball and its tar blobs also deal 6-12 damage to nearby units
+|{{BallLink|Poison}} + {{BallLink|Earthquake}}
+|N/A
+|On-Hit
+On-Timer
+|Slow, Poison
+|No
+|- data-basics="Burn, Iron, Time" data-intermediates="Bomb"
+{{BallTableRow|Time Bomb}}
+|Throws a time bomb every few seconds, which explodes after a delay, dealing 80-120 damage to nearby enemies.
+|{{BallLink|Time}} + {{BallLink|Bomb}}
+|N/A
+|On-Hit
+On-Timer
+|Time Bomb Spawn, Time Snare
+|No
+|- data-basics="Freeze, Time"
+{{BallTableRow|Timestop}}
+|Freezes everything on the field for 5.0 seconds but destroys itself after hitting an enemy. Has a 30 second cooldown before it can be shot again.
+|{{BallLink|Time}} + {{BallLink|Freeze}}
+|Destroy
+|On-Hit
+On-Shoot(full screen)
+|Timestop
+|No
+|- data-basics="Cell, Flesh, Laser (Horizontal), Laser (Vertical), Poison" data-intermediates="Radiation Beam"
+{{BallTableRow|Tumor}}
+|Applies tumor on hit, Enemies with a tumor die after 40 seconds (exept for bosses).
+|{{BallLink|Radiation Beam}} + {{BallLink|Flesh}}
+|N/A
+|On-Hit
+|Tumor
+|No
+|- data-basics="Bleed, Dark, Vampire" data-intermediates="Vampire Lord"
+{{BallTableRow|Vampire Lord}}
+|Each hit inflicts 3 stacks of bleed. Heals 1 health and consumes all stacks when hitting an enemy with at least 10 stacks of bleed
+|{{BallLink|Vampire}} + ({{BallLink|Bleed}} or {{BallLink|Dark}})
+|N/A
+|On-Hit
+|Bleed, Heal
+|Yes, to {{BallLink|Nosferatu}} with both {{BallLink|Spider Queen}} and {{BallLink|Mosquito King}}
+|- data-basics="Freeze, Poison"
+{{BallTableRow|Venom}}
+|Applies 1 stack of venom on hit (max 8 stacks). Each stack deal 3-6 damage per second and slows down enemies.
+|{{BallLink|Poison}} + {{BallLink|Freeze}}
+|N/A
+|On-Hit
+|Venom, Slow
+|No
+|- data-basics="Cell, Ghost, Poison"
+{{BallTableRow|Virus}}
+|Applies 1 stack of disease to units it hits (max 8 stacks). Disease lasts for 6 seconds. Each stack of disease deals 3-6 damage per second and diseased units have a 15% chance of passing a stack to undiseased nearby enemies each second
+|{{BallLink|Poison}} + ({{BallLink|Bleed}} or {{BallLink|Ghost}} or {{BallLink|Cell}})
+|N/A
+|On-Hit
+AOE
+|Disease
+|No
+|- data-basics="Cell, Egg Sac"
+{{BallTableRow|Voluptuous Egg Sac}}
+|Explodes into 2-3 egg sacs on hitting an enemy. Has a 3 second cooldown before it can be shot again
+|{{BallLink|Egg Sac}} + {{BallLink|Cell}}
+|Destroy
+|On-Hit
+Spawn
+|Baby Ball Spawn
+|No
+|- data-basics="Light, Time"
+{{BallTableRow|Warp}}
+|After each hit, warps to a random spot on the field and speeds up by 5%.
+|{{BallLink|Time}} + {{BallLink|Light}}
+|N/A
+|N/A
+|N/A
+|No
+|- data-basics="Freeze, Ghost" data-intermediates="Wraith"
+{{BallTableRow|Wraith}}
+|Freezes any enemy it passes through for 0.8 seconds
+|{{BallLink|Freeze}} + {{BallLink|Ghost}}
+|Pass Through
+|On-Hit
+|Freeze
+|Yes, to {{BallLink|Banshee}} with {{BallLink|Phantom}}
+|- data-basics="Laser (Horizontal), Laser (Vertical), Light" data-intermediates="Holy Laser, Laser Beam"
+{{BallTableRow|X Ray}}
+|Emits an X-shaped laser on hit, which deals 50-75 damage to enemies and applies 1 stack of radiation (max 5 stacks). Radiation causes enemies to receive 10% more damage from all sources per stack.
+|{{BallLink|Holy Laser}} + {{BallLink|Laser Beam}}
+|N/A
+|On-Hit
+AOE
+|Radiation
+|No
+|- data-basics="Flesh, Vampire"
+{{BallTableRow|Zombie}}
+|Infects enemies on hit, giving them a 40% chance to turn into a friendly zombie on death
+|{{BallLink|Vampire}} + {{BallLink|Flesh}}
+|N/A
+|On-Hit
+|Zombie Infection, Zombie Spawn
+|No
+|}
+[[Category:Unlocks]]
