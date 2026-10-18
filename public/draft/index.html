@@ -858,7 +858,10 @@ function renderGates() {
   const n = curPick(), until = nextTarget();
   const adp = p => p.espnAdp ?? p.yahooAdp ?? 999;
   const k = until ? until - n - (onMe() ? 1 : 0) : 0;
-  const goneBy = new Set([...AVAIL].filter(p => p.score != null).sort((a, b) => adp(a) - adp(b)).slice(0, Math.max(0, k)).map(p => p.id));
+  const adpOrder = [...AVAIL].filter(p => p.score != null).sort((a, b) => adp(a) - adp(b));
+  const goneBy = new Set(adpOrder.slice(0, Math.max(0, k)).map(p => p.id));
+  // how many picks from now (by ADP) until a player is expected to go
+  const picksUntil = new Map(adpOrder.map((p, i) => [p.id, adp(p) >= 999 ? Infinity : i + 1]));
   const cells = [`<button class="gate" data-pos="ALL" aria-pressed="${ui.pos === "ALL"}"><span class="g"><span class="pos">All</span></span><span class="s">${AVAIL.filter(p => p.score != null).length} left</span></button>`];
   // A position "needs" a pick only if a positional starting slot (not UTIL) is still open for it
   const openPos = BASE.slots.filter((s, i) => BASE.own[i] < 0 && s !== "UTIL");
@@ -873,7 +876,8 @@ function renderGates() {
     const need = needed(x);
     const cliff = !!(need && until && survive === 0 && nxt && drop > 0.05 * q[0].score);
     const topVonr = Math.max(...q.filter(p => p.tier === t).map(p => p.vonr ?? -1e9));
-    return { x, q, t, inT, nxt, drop, survive, cliff, need, topVonr };
+    const lasts = Math.max(...q.filter(p => p.tier === t).map(p => picksUntil.get(p.id) ?? Infinity));
+    return { x, q, t, inT, nxt, drop, survive, cliff, need, topVonr, lasts };
   });
   // Only the steepest cliff gets the full yellow; other cliffs get a yellow edge
   // The flooded gate is the cliff whose best player has the highest VONR, so it agrees with the board
@@ -882,12 +886,12 @@ function renderGates() {
     const { x } = g;
     if (g.empty) { cells.push(`<button class="gate" data-pos="${x}" aria-pressed="${ui.pos === x}"><span class="g"><span class="pos">${x}</span></span><span class="s">none left</span></button>`); continue; }
     const cls = [g === worst ? "cliff worst" : g.cliff ? "cliff" : "", g.need ? "" : "filled"].join(" ");
-    const tip = `Best ${x} available: ${g.q[0].name} (tier ${g.t}). ${g.inT} left in that tier; about ${g.survive} should still be there at pick #${until}.${g.nxt ? ` Next tier starts at ${g.nxt.name}, ${val(g.drop)} lower.` : ""}${g.cliff ? " This tier is expected to run out before your pick." : ""}${g.need ? "" : " Your starting slots for this position are filled."}`;
+    const tip = `Best ${x} available: ${g.q[0].name} (tier ${g.t}). ${g.inT} left in that tier; about ${g.survive} should still be there at pick #${until}.${isFinite(g.lasts) ? ` By ADP the last of this tier goes in about ${g.lasts} picks.` : ""}${g.nxt ? ` Next tier starts at ${g.nxt.name}, ${val(g.drop)} pts lower.` : ""}${g.cliff ? " This tier is expected to run out before your pick." : ""}${g.need ? "" : " Your starting slots for this position are filled."}`;
     cells.push(`<button class="gate ${cls}" data-pos="${x}" aria-pressed="${ui.pos === x}" title="${esc(tip)}">
       <span class="g"><span class="pos">${x}</span><span class="t">T${g.t}</span></span>
       <span class="s"><b>${g.inT} in tier</b></span>
       <span class="s">${until ? `${g.survive} last to #${until}` : "&nbsp;"}</span>
-      <span class="s">${!g.need ? "Filled" : g.cliff ? `<b class="ends">Tier ends</b> −${val(g.drop)}` : g.nxt ? `next −${val(g.drop)} pts` : "last tier"}</span></button>`);
+      <span class="s">${!g.need ? "Filled" : g.cliff ? `<b class="ends">Ends</b> in ${g.lasts} pick${g.lasts === 1 ? "" : "s"}` : isFinite(g.lasts) ? `Lasts ~${g.lasts} picks` : "Lasts a while"}</span></button>`);
   }
   $("#gates").innerHTML = cells.join("");
 }
