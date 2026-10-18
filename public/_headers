@@ -21,3 +21,9 @@
   Cache-Control: public, max-age=0, must-revalidate
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# Fantasy basketball draft board (unlisted). Always revalidate so a data
+# refresh shows up immediately, and keep it out of search engines.
+/draft/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow
