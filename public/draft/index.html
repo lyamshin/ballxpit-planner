@@ -50,7 +50,7 @@ svg.i{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .btn:disabled{opacity:.35;cursor:default}
 
 /* ---------- app frame ---------- */
-.app{height:100vh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr)}
+.app{height:100vh;height:100dvh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr)}
 .bar{display:flex;align-items:center;gap:10px;height:34px;padding:0 10px 0 14px;border-bottom:1px solid var(--rule)}
 .brand{display:flex;align-items:center;gap:8px;font:600 15px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
 .brand .sub{font:400 11px/1 var(--mono);color:var(--steel);letter-spacing:.08em}
@@ -115,7 +115,7 @@ svg.i{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .gate.filled .pos,.gate.filled .s,.gate.filled .s b,.gate.filled .t{color:var(--steel)}
 
 /* ---------- main split ---------- */
-.main{display:grid;grid-template-rows:minmax(0,1fr) var(--dock);min-height:0;border-top:1px solid var(--rule)}
+.main{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) var(--dock);min-height:0;border-top:1px solid var(--rule)}
 .main.collapsed{grid-template-rows:minmax(0,1fr) 34px}
 .main.clock{grid-template-rows:minmax(0,1fr) 200px}
 @media (min-width:1200px){
@@ -153,6 +153,7 @@ table.dep{border-collapse:separate;border-spacing:0;width:100%}
 .dep tr:hover .grip{color:var(--steel-2)}
 .grip:hover{background:var(--rule-2);color:var(--white) !important}
 .grip:active{cursor:grabbing}
+.dep td.ours .ud{color:var(--steel-2);font-weight:500}
 .dep td.ours{color:var(--white);font-weight:600;width:48px}
 .dep td.my{color:var(--steel-2);width:44px}
 .dep .my{display:none}
@@ -216,6 +217,7 @@ table.dep{border-collapse:separate;border-spacing:0;width:100%}
 .dep tr.sep .label{color:var(--steel-2)}
 .dep tr.sep .label b{color:var(--white);font-weight:700}
 @container (max-width:700px){ .dep .p2{display:none} }
+@container (max-width:560px){ .dep .p1{display:none} }
 @container (max-width:1120px){ .dep .acts{display:none} }
 @container (max-width:980px){ .dep .p3{display:none} }
 @container (max-width:1320px){ .dep .p4{display:none} }
@@ -335,18 +337,59 @@ dialog h4{margin:18px 0 8px}
 .note{color:var(--steel);font:400 12px/1.5 var(--sans);margin:8px 0 0;max-width:72ch}
 .note code{font-family:var(--mono);font-size:11px;color:var(--steel-2)}
 
-@media (max-width:620px){
-  .pass{grid-template-columns:1fr 14px auto}
-  #segIn,#segThen{display:none}
-  .pass .entry{grid-column:1 / -1;border-left:0;border-top:1px solid var(--paper-rule)}
-  .pass .numeral{font-size:52px}
-  .brand .sub{display:none}
-  .gates{grid-template-columns:repeat(3,1fr)}
-  .gate:nth-child(4){border-left:0}
-  .gate:nth-child(n+4){border-top:1px solid var(--rule)}
-  :root{--dock:230px}
-}
+
 @media (prefers-reduced-motion:reduce){ *{transition:none !important;animation:none !important} }
+@media (max-width:620px){
+  /* title bar: icons only */
+  .bar{padding:0 6px 0 12px}
+  .brand .sub{display:none}
+  .bar-actions .btn{font-size:0;gap:0;padding:0 8px;height:30px}
+  .bar-actions .btn svg.i{width:16px;height:16px}
+  /* pass: stub | pick | up-in on one row, entry full width below */
+  .pass{grid-template-columns:minmax(0,1fr) 14px auto auto;margin:8px 8px 6px;max-width:none;justify-self:stretch}
+  #segThen{display:none}
+  .pass .seg,.stub{padding:8px 10px 7px}
+  .pass .numeral{font-size:44px}
+  .pass .val{font-size:22px}
+  .stub .who{font-size:19px;max-width:none}
+  .pass .entry{grid-column:1 / -1;border-left:0;border-top:1px solid var(--paper-rule);gap:5px}
+  .entry input{font-size:16px;height:40px}
+  #sugg{left:8px;right:8px}
+  /* gates: one swipeable row */
+  .gates{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 8px 6px;scrollbar-width:none}
+  .gates::-webkit-scrollbar{display:none}
+  .gate{flex:0 0 auto;min-width:112px;scroll-snap-align:start}
+  .gate:first-child{min-width:72px}
+  /* board header: title + swipeable toggles */
+  .board-head{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:6px 8px}
+  .board-head::-webkit-scrollbar{display:none}
+  .board-head h2 span{display:none}
+  .board-head .sp{display:none}
+  /* rows: no drag handle on touch, roomier tap height */
+  .dep td.mk .grip{display:none}
+  .dep td.mk{width:16px;padding-left:6px}
+  .dep th .hz{display:none}
+  .dep td,.dep th{padding-left:5px;padding-right:5px}
+  .dep td{height:38px}
+  .dep td.nm{max-width:132px}
+  .tm{min-width:34px;margin-right:6px}
+  /* dock: tabs swipe, taller panel */
+  :root{--dock:32dvh}
+  .main.clock{grid-template-rows:minmax(0,1fr) 30dvh}
+  .tabs{overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:0 9px;flex:none}
+  .dock-body{padding:10px 10px 14px}
+  .segs{grid-template-columns:repeat(2,1fr)}
+  .segs > div:nth-child(4n+1){border-left:1px solid var(--rule)}
+  .segs > div:nth-child(2n+1){border-left:0}
+  .segs > div:nth-child(-n+4){border-top:1px solid var(--rule)}
+  .segs > div:nth-child(-n+2){border-top:0}
+  .pp-head{flex-wrap:wrap}
+  .pp-marks .adj{margin-left:0}
+  .roster{grid-template-columns:repeat(2,1fr)}
+  dialog{padding:16px 14px}
+}
 </style>
 </head>
 <body>
@@ -698,7 +741,12 @@ function simulateOurs() {
     if (!best) break;
     gone.add(best.id); rosters[T].push(best); OURS.set(String(best.id), n);
   }
+  // Everyone the simulation leaves undrafted is ranked UD 1, UD 2, … by score: the waiver targets
+  OURS_UD = new Map();
+  let u = 0;
+  for (const pl of byScore) if (!gone.has(pl.id)) OURS_UD.set(String(pl.id), ++u);
 }
+let OURS_UD = new Map();
 
 
 // ------------------------------------------------------------------ view state
@@ -761,16 +809,17 @@ const COLS = [
   { k: "tier", l: "Tier", t: "Natural break in the value curve (1 = top). Neighbouring tiers alternate shade.", get: p => p.tier, asc: 1, cls: "tiercell", html: p => p.tier ? (p._tierCont ? `<span class="tierblk cont ${p.tier % 2 ? "odd" : "even"}" title="Tier ${p.tier}"></span>` : `<span class="tierblk ${p.tier % 2 ? "odd" : "even"}">T${p.tier}</span>`) : `<span class="tierblk none">–</span>` },
   { k: "name", l: "Player", get: p => p.name, asc: 1, cls: "l nm",
     html: p => `${tchip(p.team)}<span class="pname">${esc(p.name)}</span>${injTag(p)}` },
-  { k: "pos", l: "Pos", t: "Eligible positions. Click one to show only that position; click it again to show everyone.", get: p => POS_ORDER.indexOf((p.pos || [])[0] ?? "") * 100 + (p.pos || []).length, asc: 1, cls: "l poscell",
+  { k: "pos", l: "Pos", t: "Eligible positions. Click one to show only that position; click it again to show everyone.", get: p => POS_ORDER.indexOf((p.pos || [])[0] ?? "") * 100 + (p.pos || []).length, asc: 1, cls: "l poscell p1",
     html: p => (p.pos || []).map(x => `<button class="postok" data-pos="${x}" data-postoggle="1" aria-pressed="${ui.pos === x}">${x}</button>`).join("") || "–" },
-  { k: "ours", l: "Sim pk", t: "Simulated pick: where a draft from here would take him if every team drafted by VONR for its own roster. Ignores your marks and My # order.", get: p => OURS.get(String(p.id)) ?? null, asc: 1, cls: "ours", html: p => OURS.has(String(p.id)) ? "#" + OURS.get(String(p.id)) : "–" },
+  { k: "ours", l: "Sim pk", t: "Simulated pick: where a draft from here would take him if every team drafted by VONR for its own roster. Ignores your marks and My # order.", get: p => OURS.get(String(p.id)) ?? (OURS_UD.has(String(p.id)) ? 10000 + OURS_UD.get(String(p.id)) : null), asc: 1, cls: "ours p1",
+    html: p => OURS.has(String(p.id)) ? "#" + OURS.get(String(p.id)) : OURS_UD.has(String(p.id)) ? `<span class="ud" title="Undrafted in the simulation: waiver target #${OURS_UD.get(String(p.id))}">UD ${OURS_UD.get(String(p.id))}</span>` : "–" },
   { k: "my", l: "My #", t: "Your own order. Drag rows by the handle to set it.", get: p => ORDER_POS.get(String(p.id)) ?? null, asc: 1, cls: "my", html: p => MY_RANK.get(String(p.id)) ?? "–" },
   { k: "vonr", l: "VONR", t: "Value over next replacement, in season points: how far he clears the best player at a slot you need who should still be there at the pick shown in the header", get: p => p.vonr,
     cls: p => "vonr" + (p.vonr != null && p.vonr <= 0 ? " neg" : ""), html: p => p.vonr == null ? "–" : `<b title="vs the best ${p.vonrSlot || ""} likely left">${val(p.vonr)}</b>` },
   { k: "score", l: "Score", t: "Projected season points (blended FPPG × games) plus playoff-schedule bonus", get: p => p.score, cls: "p3", html: p => val(p.score) },
   { k: "blend", l: "FPPG", t: "Blended fantasy points per game", get: p => p.blend, cls: "p2", html: p => f1(p.blend) },
   { k: "po", l: "PO G", t: "Team games in your fantasy playoff weeks", get: p => p.po, thc: "p3", cls: p => "p3 " + (p.po == null ? "" : p.po > AVG_PO + 0.5 ? "hi" : p.po < AVG_PO - 0.5 ? "dim" : ""), html: p => p.po ?? "–" },
-  { k: "espnAdp", l: "ADP", t: "ESPN average draft position", get: p => p.espnAdp, asc: 1, html: p => rk(p.espnAdp) },
+  { k: "espnAdp", l: "ADP", t: "ESPN average draft position", get: p => p.espnAdp, asc: 1, cls: "p1", html: p => rk(p.espnAdp) },
   { k: "rank", l: "Rk", t: "Your blended rank among all players", get: p => p.rank, asc: 1, cls: "p4", html: p => p.rank ?? "–" },
   { k: "fE", l: "ESPN pj", t: "ESPN 2026-27 projection, FPPG with your scoring", get: p => p.fE, cls: "p3", html: p => f1(p.fE) },
   { k: "fF", l: "FP pj", t: "FantasyPros 2026-27 projection, FPPG with your scoring", get: p => p.fF, cls: "p3", html: p => f1(p.fF) },
@@ -937,7 +986,7 @@ function renderTable() {
 
   const until = nextTarget();
   $("#tbl thead").innerHTML = "<tr>" + COLS.map(c => {
-    const label = c.k === "av" ? (until ? "At #" + until : "Next") : c.k === "vonr" && VONR_CTX.L ? `VONR →#${VONR_CTX.L}` : c.l;
+    const label = c.k === "av" ? (until ? "At #" + until : "Next") : c.k === "vonr" && VONR_CTX.L ? `VONR<span class="hz"> →#${VONR_CTX.L}</span>` : c.l;
     const base = (c.thc ?? (typeof c.cls === "string" ? c.cls : "")).split(" ").filter(x => x === "l" || x === "acts" || x === "my" || /^p\d$/.test(x));
     const cls = [...base, ui.sort === c.k ? "on" : "", ui.sort === c.k && ui.dir > 0 ? "asc" : ""].join(" ");
     return `<th class="${cls}" ${c.nosort ? "" : `data-sort="${c.k}"`} title="${esc(c.t || "")}">${label}</th>`;
