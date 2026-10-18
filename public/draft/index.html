@@ -152,6 +152,7 @@ table.dep{border-collapse:separate;border-spacing:0;width:100%}
 .dep tr:hover .grip{color:var(--steel-2)}
 .grip:hover{background:var(--rule-2);color:var(--white) !important}
 .grip:active{cursor:grabbing}
+.dep td.ours{color:var(--white);font-weight:600;width:48px}
 .dep td.my{color:var(--steel-2);width:44px}
 .dep .my{display:none}
 .board.has-order .dep .my{display:table-cell}
@@ -632,6 +633,57 @@ function computeVonr(avail, openSlots) {
 }
 let VONR_CTX = {};
 
+// "Our" draft order: simulate the rest of the draft from the current pick, with every team
+// taking the player with the highest value over its own next likely replacement (the drafting
+// philosophy), others assumed to follow ADP between that team's picks. Ignores your marks/order.
+let OURS = new Map(), OURS_KEY = "";
+function simulateOurs() {
+  const key = JSON.stringify([PICKS.map(k => k.id + ":" + k.team), S.teams, S.rounds, S.lookahead, S.slots, S.scoring, S.weights, S.rankBy, S.poEmph, S.poStart, S.poEnd, S.tierGap,
+    Object.entries(PREFS).filter(([, v]) => v.adj).map(([k, v]) => k + v.adj)]);
+  if (key === OURS_KEY) return;
+  OURS_KEY = key; OURS = new Map();
+  const total = S.teams * S.rounds, adpOf = p => p.espnAdp ?? p.yahooAdp ?? 999;
+  const rosters = Array.from({ length: S.teams + 1 }, () => []);
+  PICKS.forEach((k, i) => { const pl = byId.get(String(k.id)); const t = pickTeam(k, i); if (pl && rosters[t]) rosters[t].push(pl); });
+  const tk = taken();
+  const pool = players.filter(pl => pl.score != null && !tk.has(String(pl.id)));
+  const byScore = [...pool].sort((a, b) => b.score - a.score), byAdp = [...pool].sort((a, b) => adpOf(a) - adpOf(b));
+  const fits = (pl, sl) => !SLOT_POS[sl] || SLOT_POS[sl].some(x => (pl.pos || []).includes(x));
+  const picksOf = Array.from({ length: S.teams + 1 }, () => []);
+  for (let n = 1; n <= total; n++) picksOf[onClockTeam(n)].push(n);
+  const gone = new Set();
+  for (let n = PICKS.length + 1; n <= total; n++) {
+    const T = onClockTeam(n), roster = rosters[T].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+    const m = matchSlots(roster);
+    const open = m.slots.filter((sl, i) => m.own[i] < 0);
+    const slots = open.length ? [...new Set(open)] : ["UTIL"];
+    let L = n; for (let i = 0; i < S.lookahead && L; i++) L = picksOf[T].find(x => x > L);
+    const repl = {};
+    if (L) {
+      const others = L - n - S.lookahead, predGone = new Set();
+      for (const pl of byAdp) { if (predGone.size >= others) break; if (!gone.has(pl.id)) predGone.add(pl.id); }
+      for (const sl of slots) {
+        repl[sl] = [];
+        for (const pl of byScore) { if (gone.has(pl.id) || predGone.has(pl.id) || !fits(pl, sl)) continue; repl[sl].push(pl); if (repl[sl].length >= 2) break; }
+      }
+    }
+    let best = null, bestV = -Infinity, c = 0;
+    for (const pl of byScore) {
+      if (gone.has(pl.id)) continue;
+      if (++c > 45) break;
+      let v = -Infinity;
+      for (const sl of slots) {
+        if (!fits(pl, sl)) continue;
+        const r = L ? repl[sl].find(q => q !== pl) : null;
+        v = Math.max(v, pl.score - (r ? r.score : 0));
+      }
+      if (v > bestV) { bestV = v; best = pl; }
+    }
+    if (!best) break;
+    gone.add(best.id); rosters[T].push(best); OURS.set(String(best.id), n);
+  }
+}
+
 
 // ------------------------------------------------------------------ view state
 Object.assign(ui, { tab: "needs", collapsed: false, allCols: false }, store.get("ui", {}));
@@ -695,10 +747,11 @@ const COLS = [
     html: p => `${tchip(p.team)}<span class="pname">${esc(p.name)}</span>${injTag(p)}` },
   { k: "pos", l: "Pos", t: "Eligible positions. Click one to show only that position; click it again to show everyone.", get: p => POS_ORDER.indexOf((p.pos || [])[0] ?? "") * 100 + (p.pos || []).length, asc: 1, cls: "l poscell",
     html: p => (p.pos || []).map(x => `<button class="postok" data-pos="${x}" data-postoggle="1" aria-pressed="${ui.pos === x}">${x}</button>`).join("") || "–" },
+  { k: "ours", l: "Ours", t: "Our philosophy's draft order: the pick where a simulated draft from here would take him, with every team taking the highest value over its own next replacement. Ignores your marks and My # order.", get: p => OURS.get(String(p.id)) ?? null, asc: 1, cls: "ours", html: p => OURS.has(String(p.id)) ? "#" + OURS.get(String(p.id)) : "–" },
   { k: "my", l: "My #", t: "Your own order. Drag rows by the handle to set it.", get: p => ORDER_POS.get(String(p.id)) ?? null, asc: 1, cls: "my", html: p => MY_RANK.get(String(p.id)) ?? "–" },
   { k: "vonr", l: "VONR", t: "Value over next replacement: how far he clears the best player at his slot who should still be there at your next pick", get: p => p.vonr,
     cls: p => "vonr" + (p.vonr != null && p.vonr <= 0 ? " neg" : ""), html: p => p.vonr == null ? "–" : `<b>${val(p.vonr)}</b><span class="slot">${p.vonrSlot || ""}</span>` },
-  { k: "score", l: "Score", t: "Projected season points (blended FPPG × games) plus playoff-schedule bonus", get: p => p.score, cls: "p2", html: p => val(p.score) },
+  { k: "score", l: "Score", t: "Projected season points (blended FPPG × games) plus playoff-schedule bonus", get: p => p.score, cls: "p3", html: p => val(p.score) },
   { k: "blend", l: "FPPG", t: "Blended fantasy points per game", get: p => p.blend, cls: "p2", html: p => f1(p.blend) },
   { k: "po", l: "PO G", t: "Team games in your fantasy playoff weeks", get: p => p.po, thc: "p3", cls: p => "p3 " + (p.po == null ? "" : p.po > AVG_PO + 0.5 ? "hi" : p.po < AVG_PO - 0.5 ? "dim" : ""), html: p => p.po ?? "–" },
   { k: "espnAdp", l: "ADP", t: "ESPN average draft position", get: p => p.espnAdp, asc: 1, html: p => rk(p.espnAdp) },
@@ -741,6 +794,7 @@ function render() {
     p._need = MINE.length > 0 && !full && matchSlots([...MINE, p]).n > BASE.n;
   }
   computeVonr(AVAIL, BASE.slots.filter((s, i) => BASE.own[i] < 0));
+  simulateOurs();
   // A row that turns "last call", or a target who will be gone, stays lit until you've seen it
   for (const p of AVAIL) {
     const prev = LAST_STATUS.get(p.id);
@@ -981,6 +1035,7 @@ function renderSources(el) {
   const by = (get, asc) => A.filter(p => get(p) != null).sort((a, b) => (asc ? get(a) - get(b) : get(b) - get(a)));
   const top40 = by(p => p.score).slice(0, 40);
   const blocks = [
+    ["Our order (simulated)", by(p => OURS.get(String(p.id)) ?? null, 1), p => "#" + OURS.get(String(p.id))],
     ...(ORDER ? [["Your order", by(p => ORDER_POS.get(String(p.id)) ?? null, 1), p => "#" + MY_RANK.get(String(p.id))]] : []),
     ["Value over next repl.", by(p => p.vonr), p => val(p.vonr)],
     ["Your blend (score)", by(p => p.score), p => val(p.score)],
