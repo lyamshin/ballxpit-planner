@@ -97,7 +97,7 @@ svg.i{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 
 /* ---------- gate strip: tiers by position ---------- */
 .gates{display:grid;grid-template-columns:.7fr repeat(5,1fr);margin:0 12px 8px;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
-.gate{all:unset;cursor:pointer;padding:7px 10px 6px;border-left:1px solid var(--rule);display:flex;flex-direction:column;gap:4px;position:relative;min-width:0}
+.gate{all:unset;cursor:pointer;padding:6px 10px 5px;border-left:1px solid var(--rule);display:flex;flex-direction:column;gap:3px;position:relative;min-width:0}
 .gate:first-child{border-left:0}
 .gate:hover{background:var(--slate)}
 .gate[aria-pressed="true"]{background:var(--slate-2)}
@@ -105,7 +105,7 @@ svg.i{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .gate .g{display:flex;align-items:baseline;gap:6px}
 .gate .pos{font:700 19px/1 var(--cond);letter-spacing:.02em}
 .gate .t{font:700 11px/1 var(--mono);color:var(--steel-2)}
-.gate .s{font:500 13.5px/1 var(--cond);font-variant-numeric:tabular-nums;color:var(--steel);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gate .s{font:500 13.5px/1.05 var(--cond);font-variant-numeric:tabular-nums;color:var(--steel);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gate .s b{color:var(--white);font-weight:700}
 .gate.cliff{box-shadow:inset 0 3px 0 var(--alert)}
 .gate.cliff .ends{color:var(--alert)}
@@ -117,6 +117,7 @@ svg.i{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 /* ---------- main split ---------- */
 .main{display:grid;grid-template-rows:minmax(0,1fr) var(--dock);min-height:0;border-top:1px solid var(--rule)}
 .main.collapsed{grid-template-rows:minmax(0,1fr) 34px}
+.main.clock{grid-template-rows:minmax(0,1fr) 200px}
 @media (min-width:1200px){
   .main,.main.collapsed{grid-template-rows:none;grid-template-columns:minmax(0,1fr) 430px}
   .dock{border-top:0 !important;border-left:1px solid var(--rule)}
@@ -207,6 +208,8 @@ table.dep{border-collapse:separate;border-spacing:0;width:100%}
 .tierblk.odd{background:#2c333d;color:var(--white)}
 .tierblk.even{background:#1c2128;color:var(--steel-2);box-shadow:inset 0 0 0 1px #3a424d}
 .tierblk.none{color:var(--steel)}
+.tierblk.cont{width:4px;margin:0 auto;height:31px;border-radius:0;box-shadow:none}
+.tierblk.cont.even{background:#3a424d}
 .dep th[data-sort="tier"]{text-align:center}
 .dep tr.sep td{height:22px;background:var(--ink);border-bottom:1px solid var(--rule-2);cursor:default;text-align:left;padding-left:12px}
 .dep tr.sep:hover td{background:var(--ink)}
@@ -267,6 +270,8 @@ table.src{border-collapse:collapse;width:100%;font:var(--num);font-variant-numer
 .weeks-cap{display:flex;gap:14px;flex-wrap:wrap;font:500 14px/1.4 var(--cond);color:var(--steel);margin-top:6px}
 .weeks-cap b{color:var(--white)}
 textarea.field{width:100%;min-height:52px;resize:vertical;font-family:var(--sans);font-size:13px;margin-top:4px}
+.mix{margin:8px 0 0;font:500 14px/1.4 var(--cond);color:var(--steel)}
+.mix b{color:var(--steel-2);font-weight:600}
 .outlook{color:var(--steel-2);font:400 13px/1.55 var(--sans);max-width:68ch;margin:0}
 
 /* needs / sources / team / log */
@@ -279,6 +284,7 @@ textarea.field{width:100%;min-height:52px;resize:vertical;font-family:var(--sans
 .nopt:hover .pname{text-decoration:underline;text-underline-offset:3px}
 .nopt b{font:700 14px/1 var(--cond);margin-left:5px;color:var(--steel-2)}
 .nopt .status{margin-left:6px}
+.dot5050{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--alert);margin-left:6px}
 .need{padding:7px 0 !important}
 .need .repl{font:500 14px/1.4 var(--cond);color:var(--steel);grid-column:2}
 .need .repl b{color:var(--steel-2);font-weight:700}
@@ -382,7 +388,7 @@ dialog h4{margin:18px 0 8px}
     <div class="seg entry">
       <span class="label">Enter pick</span>
       <input id="search" type="text" autocomplete="off" spellcheck="false" placeholder="Type a name…" aria-label="Player name">
-      <span class="hint" id="hint" aria-live="polite">↵ team on clock · ⇧↵ mine · / to focus</span>
+      <span class="hint" id="hint" aria-live="polite">↵ team · ⇧↵ mine · / focus</span>
       <div id="sugg" role="listbox"></div>
     </div>
   </section>
@@ -419,12 +425,18 @@ const DEFAULTS = {
   slots: { PG: 1, SG: 1, SF: 1, PF: 1, C: 1, G: 1, F: 1, UTIL: 3 },
   // ESPN default H2H points scoring
   scoring: { pts: 1, reb: 1, ast: 2, stl: 4, blk: 4, tpm: 1, fgm: 2, fga: -1, ftm: 1, fta: -1, to: -2 },
-  weights: { espn: 45, fp: 35, last: 20 },
+  // Research defaults (RESEARCH.md): ~80% projections / 20% last season was the most accurate blend
+  // over 2024-25 and 2025-26; ESPN and FantasyPros split evenly (consensus beats any single source);
+  // projected games run ~14% high, so they're scaled by 0.86.
+  weights: { espn: 40, fp: 40, last: 20 }, gpScale: 0.86,
   rankBy: "total", poEmph: 1, poStart: null, poEnd: null, offNight: 7, lookahead: 1, tierGap: 1.8, teamNames: [],
 };
 const SCORE_LABELS = { pts: "PTS", reb: "REB", ast: "AST", stl: "STL", blk: "BLK", tpm: "3PM", fgm: "FGM", fga: "FGA", ftm: "FTM", fta: "FTA", to: "TO" };
+const RESEARCH_WEIGHTS = { espn: 40, fp: 40, last: 20 };
 function loadSettings() {
   const s = store.get("settings", {});
+  // one-time upgrade from the old guessed default (45/35/20) to the research default
+  if (s.weights && s.weights.espn === 45 && s.weights.fp === 35 && s.weights.last === 20) s.weights = { ...RESEARCH_WEIGHTS };
   return { ...DEFAULTS, ...s, slots: { ...DEFAULTS.slots, ...(s.slots || {}) },
     scoring: { ...DEFAULTS.scoring, ...(s.scoring || {}) }, weights: { ...DEFAULTS.weights, ...(s.weights || {}) }, teamNames: s.teamNames || [] };
 }
@@ -495,14 +507,18 @@ function recompute() {
   for (const p of players) {
     p.fE = fppg(p.proj.espn); p.fF = fppg(p.proj.fp);
     p.fL = p.last && p.last.gp >= 5 ? fppg(p.last) : null;
-    let sw = 0, sv = 0;
-    const add = (v, w) => { if (v != null && w > 0) { sv += v * w; sw += w; } };
-    add(p.fE, S.weights.espn); add(p.fF, S.weights.fp);
-    add(p.fL, S.weights.last * Math.min(1, (p.last?.gp || 0) / 40));
+    // Rookies (and anyone with no 2025-26 games) get 0 weight on last season; the remaining
+    // weight is split between the projections in proportion. Under 20 games last season,
+    // last season's weight shrinks in proportion (sample size), it isn't otherwise discounted.
+    p.rookie = p.fL == null;
+    const wE = p.fE != null ? S.weights.espn : 0, wF = p.fF != null ? S.weights.fp : 0;
+    const wL = p.fL != null ? S.weights.last * Math.min(1, (p.last?.gp || 0) / 20) : 0;
+    const sw = wE + wF + wL;
     const adj = +pref(p.id).adj || 0;
-    p.blend = sw ? sv / sw + adj : null;
+    p.blend = sw ? (wE * (p.fE ?? 0) + wF * (p.fF ?? 0) + wL * (p.fL ?? 0)) / sw + adj : null;
+    p.wEff = sw ? { espn: wE / sw, fp: wF / sw, last: wL / sw } : null;
     const gps = [p.proj.espn?.gp, p.proj.fp?.gp].filter(Boolean);
-    p.gp = gps.length ? gps.reduce((a, b) => a + b) / gps.length : (p.last ? Math.min(70, p.last.gp) : 55);
+    p.gp = (gps.length ? gps.reduce((a, b) => a + b) / gps.length : (p.last ? Math.min(70, p.last.gp) : 55)) * (S.gpScale ?? 1);
     const t = TEAM[p.team];
     p.po = t ? t.po : null;
     p.total = p.blend != null ? p.blend * p.gp : null;
@@ -724,8 +740,8 @@ const tchip = team => {
 const teamLabel = t => (t === S.mySlot ? "You" : (S.teamNames[t - 1] || "").trim() || "Team " + t);
 // Status is relative to the pick that matters: your upcoming pick, or (when you're on the clock) the one after.
 const onMe = () => onClockTeam(curPick()) === S.mySlot;
-const STATUS_WAIT = { gone: "Gone", risky: "Last call", safe: "There" };
-const STATUS_CLOCK = { gone: "", risky: "50/50", safe: "Back" };
+const STATUS_WAIT = { gone: "Gone", risky: "50/50", safe: "Lasts" };
+const STATUS_CLOCK = STATUS_WAIT;
 // While waiting: record who took him. On the clock: one button, and it means you.
 const pickBtns = (p, size = "") => {
   if (onMe()) return `<button class="btn ${size} primary" data-act="mine" data-id="${p.id}">Draft</button>`;
@@ -734,7 +750,7 @@ const pickBtns = (p, size = "") => {
 };
 const statusTag = p => {
   if (!p._av) return "";
-  const me = onMe(), cls = me ? { gone: "now", risky: "maybe", safe: "safe" }[p._av] : p._av;
+  const me = onMe(), cls = me ? { gone: "gone", risky: "maybe", safe: "safe" }[p._av] : p._av;
   const word = (me ? STATUS_CLOCK : STATUS_WAIT)[p._av];
   return word ? `<span class="status ${cls}">${word}</span>` : "";
 };
@@ -742,15 +758,15 @@ const statusTag = p => {
 // ------------------------------------------------------------------ board columns (p2/p3 drop as the board narrows)
 const COLS = [
   { k: "mk", l: "", nosort: 1, cls: "l mk", html: p => `<span class="grip" draggable="true" data-grip="${p.id}" title="Drag to reorder">${icon("grip")}</span><span>${marks(p)}</span>` },
-  { k: "tier", l: "Tier", t: "Natural break in the value curve (1 = top). Neighbouring tiers alternate shade.", get: p => p.tier, asc: 1, cls: "tiercell", html: p => p.tier ? `<span class="tierblk ${p.tier % 2 ? "odd" : "even"}">T${p.tier}</span>` : `<span class="tierblk none">–</span>` },
+  { k: "tier", l: "Tier", t: "Natural break in the value curve (1 = top). Neighbouring tiers alternate shade.", get: p => p.tier, asc: 1, cls: "tiercell", html: p => p.tier ? (p._tierCont ? `<span class="tierblk cont ${p.tier % 2 ? "odd" : "even"}" title="Tier ${p.tier}"></span>` : `<span class="tierblk ${p.tier % 2 ? "odd" : "even"}">T${p.tier}</span>`) : `<span class="tierblk none">–</span>` },
   { k: "name", l: "Player", get: p => p.name, asc: 1, cls: "l nm",
     html: p => `${tchip(p.team)}<span class="pname">${esc(p.name)}</span>${injTag(p)}` },
   { k: "pos", l: "Pos", t: "Eligible positions. Click one to show only that position; click it again to show everyone.", get: p => POS_ORDER.indexOf((p.pos || [])[0] ?? "") * 100 + (p.pos || []).length, asc: 1, cls: "l poscell",
     html: p => (p.pos || []).map(x => `<button class="postok" data-pos="${x}" data-postoggle="1" aria-pressed="${ui.pos === x}">${x}</button>`).join("") || "–" },
-  { k: "ours", l: "Ours", t: "Our philosophy's draft order: the pick where a simulated draft from here would take him, with every team taking the highest value over its own next replacement. Ignores your marks and My # order.", get: p => OURS.get(String(p.id)) ?? null, asc: 1, cls: "ours", html: p => OURS.has(String(p.id)) ? "#" + OURS.get(String(p.id)) : "–" },
+  { k: "ours", l: "Sim pk", t: "Simulated pick: where a draft from here would take him if every team drafted by VONR for its own roster. Ignores your marks and My # order.", get: p => OURS.get(String(p.id)) ?? null, asc: 1, cls: "ours", html: p => OURS.has(String(p.id)) ? "#" + OURS.get(String(p.id)) : "–" },
   { k: "my", l: "My #", t: "Your own order. Drag rows by the handle to set it.", get: p => ORDER_POS.get(String(p.id)) ?? null, asc: 1, cls: "my", html: p => MY_RANK.get(String(p.id)) ?? "–" },
-  { k: "vonr", l: "VONR", t: "Value over next replacement: how far he clears the best player at his slot who should still be there at your next pick", get: p => p.vonr,
-    cls: p => "vonr" + (p.vonr != null && p.vonr <= 0 ? " neg" : ""), html: p => p.vonr == null ? "–" : `<b>${val(p.vonr)}</b><span class="slot">${p.vonrSlot || ""}</span>` },
+  { k: "vonr", l: "VONR", t: "Value over next replacement, in season points: how far he clears the best player at a slot you need who should still be there at the pick shown in the header", get: p => p.vonr,
+    cls: p => "vonr" + (p.vonr != null && p.vonr <= 0 ? " neg" : ""), html: p => p.vonr == null ? "–" : `<b title="vs the best ${p.vonrSlot || ""} likely left">${val(p.vonr)}</b>` },
   { k: "score", l: "Score", t: "Projected season points (blended FPPG × games) plus playoff-schedule bonus", get: p => p.score, cls: "p3", html: p => val(p.score) },
   { k: "blend", l: "FPPG", t: "Blended fantasy points per game", get: p => p.blend, cls: "p2", html: p => f1(p.blend) },
   { k: "po", l: "PO G", t: "Team games in your fantasy playoff weeks", get: p => p.po, thc: "p3", cls: p => "p3 " + (p.po == null ? "" : p.po > AVG_PO + 0.5 ? "hi" : p.po < AVG_PO - 0.5 ? "dim" : ""), html: p => p.po ?? "–" },
@@ -764,7 +780,7 @@ const COLS = [
   { k: "yahooAdp", l: "Y! ADP", get: p => p.yahooAdp, asc: 1, cls: "p4", html: p => rk(p.yahooAdp) },
   { k: "ecr", l: "FP ECR", t: "FantasyPros expert consensus (category leagues)", get: p => p.ecr, asc: 1, cls: "p4", html: p => rk(p.ecr) },
   { k: "vsAdp", l: "vs ADP", t: "ADP minus your rank: positive means the room drafts him later than you value him", get: p => p.vsAdp, cls: "p4", html: p => p.vsAdp == null ? "–" : (p.vsAdp > 0 ? "+" : "") + Math.round(p.vsAdp) },
-  { k: "av", l: "Next", t: "Waiting: will he still be there at your pick? On the clock: Now = won't come back, 50/50, Back = should still be there next turn. Based on ESPN ADP.", get: p => p.espnAdp ?? p.yahooAdp, asc: 1, html: statusTag },
+  { k: "av", l: "Next", t: "Will he still be there at that pick (by ESPN ADP)? Gone = probably not · 50/50 · Lasts = probably. On the clock this is about your next pick.", get: p => p.espnAdp ?? p.yahooAdp, asc: 1, html: statusTag },
   { k: "acts", l: "", nosort: 1, cls: "acts", html: p => pickBtns(p, "sm") },
 ];
 const POS_ORDER = ["PG", "SG", "SF", "PF", "C"];
@@ -779,8 +795,8 @@ function render() {
   const tk = taken();
   const me = onMe();
   if (me !== LAST_ON_ME) {
-    if (me && !ui.collapsed) { ui.collapsed = true; AUTO_COLLAPSED = true; }
-    else if (!me && AUTO_COLLAPSED) { ui.collapsed = false; AUTO_COLLAPSED = false; }
+    if (me) { AUTO_COLLAPSED = { tab: ui.tab, collapsed: ui.collapsed }; ui.tab = "needs"; ui.collapsed = false; }
+    else if (AUTO_COLLAPSED) { ui.tab = AUTO_COLLAPSED.tab; ui.collapsed = AUTO_COLLAPSED.collapsed; AUTO_COLLAPSED = false; }
     LAST_ON_ME = me;
   }
   if (curPick() > S.teams * S.rounds && ui.tab !== "team" && !ui._doneShown) { ui.tab = "team"; ui._doneShown = true; ui.collapsed = false; }
@@ -812,7 +828,7 @@ function render() {
 
 function renderReceipt() {
   const h = $("#hint");
-  if (!RECEIPT) { h.className = "hint"; h.textContent = "↵ team on clock · ⇧↵ mine · / to focus"; return; }
+  if (!RECEIPT) { h.className = "hint"; h.textContent = "↵ team · ⇧↵ mine · / focus"; return; }
   const r = RECEIPT;
   h.className = "hint receipt";
   h.innerHTML = r.kind === "boarded"
@@ -834,7 +850,7 @@ function renderPass(until) {
   $("#segIn").innerHTML = me
     ? `<span class="label">Up again in</span><span class="val">${then ? then - n : "—"}<small> picks</small></span>`
     : `<span class="label">Up in</span><span class="val">${next == null ? "—" : next - n}<small> picks</small></span>`;
-  $("#segThen").innerHTML = `<span class="label">Then</span><span class="val">${then ? "#" + then : "—"}</span>`;
+  $("#segThen").innerHTML = `<span class="label">After that</span><span class="val">${then ? "#" + then : "—"}</span>`;
 }
 
 function renderGates() {
@@ -869,8 +885,9 @@ function renderGates() {
     const tip = `Best ${x} available: ${g.q[0].name} (tier ${g.t}). ${g.inT} left in that tier; about ${g.survive} should still be there at pick #${until}.${g.nxt ? ` Next tier starts at ${g.nxt.name}, ${val(g.drop)} lower.` : ""}${g.cliff ? " This tier is expected to run out before your pick." : ""}${g.need ? "" : " Your starting slots for this position are filled."}`;
     cells.push(`<button class="gate ${cls}" data-pos="${x}" aria-pressed="${ui.pos === x}" title="${esc(tip)}">
       <span class="g"><span class="pos">${x}</span><span class="t">T${g.t}</span></span>
-      <span class="s"><b>${g.inT} left</b>${until ? ` · ${g.survive} reach #${until}` : ""}</span>
-      <span class="s">${!g.need ? "Filled" : g.cliff ? `<b class="ends">Tier ends</b> · next −${val(g.drop)}` : g.nxt ? `next tier −${val(g.drop)}` : "last tier"}</span></button>`);
+      <span class="s"><b>${g.inT} in tier</b></span>
+      <span class="s">${until ? `${g.survive} last to #${until}` : "&nbsp;"}</span>
+      <span class="s">${!g.need ? "Filled" : g.cliff ? `<b class="ends">Tier ends</b> −${val(g.drop)}` : g.nxt ? `next −${val(g.drop)} pts` : "last tier"}</span></button>`);
   }
   $("#gates").innerHTML = cells.join("");
 }
@@ -879,7 +896,7 @@ function renderBoardHead() {
   const sortCol = COLS.find(c => c.k === ui.sort);
   const tg = (f, label) => `<button class="btn sm ghost" data-f="${f}" aria-pressed="${!!ui[f]}">${label}</button>`;
   $("#boardHead").innerHTML = `<h2>Available<span>by ${esc(sortCol?.l || "")}${ui.pos !== "ALL" ? " · " + ui.pos : ""}</span></h2><span class="sp"></span>
-    ${ORDER ? `<button class="btn sm ghost" id="resetOrder" title="Forget your dragged order">Reset my order</button>` : ""}${tg("onlyNeeds", "Fills need")}${tg("onlyTargets", "Targets")}${tg("hideAvoid", "Hide avoided")}${tg("hideOut", "Hide out")}${tg("allCols", "All columns")}`;
+    ${ORDER ? `<button class="btn sm ghost" id="resetOrder" title="Forget your dragged order">Reset my order</button>` : ""}${tg("onlyNeeds", "Needs only")}${tg("onlyTargets", "Targets only")}${tg("hideAvoid", "Hide avoided")}${tg("hideOut", "Hide injured")}${tg("allCols", "All columns")}`;
   $("#board").classList.toggle("all", !!ui.allCols);
   $("#board").classList.toggle("has-order", !!ORDER);
 }
@@ -916,7 +933,7 @@ function renderTable() {
 
   const until = nextTarget();
   $("#tbl thead").innerHTML = "<tr>" + COLS.map(c => {
-    const label = c.k === "av" ? (until ? (onMe() ? "Back?" : "At #" + until) : "Next") : c.l;
+    const label = c.k === "av" ? (until ? "At #" + until : "Next") : c.k === "vonr" && VONR_CTX.L ? `VONR →#${VONR_CTX.L}` : c.l;
     const base = (c.thc ?? (typeof c.cls === "string" ? c.cls : "")).split(" ").filter(x => x === "l" || x === "acts" || x === "my" || /^p\d$/.test(x));
     const cls = [...base, ui.sort === c.k ? "on" : "", ui.sort === c.k && ui.dir > 0 ? "asc" : ""].join(" ");
     return `<th class="${cls}" ${c.nosort ? "" : `data-sort="${c.k}"`} title="${esc(c.t || "")}">${label}</th>`;
@@ -935,6 +952,7 @@ function renderTable() {
       html.push(`<tr class="sep"><td colspan="${COLS.length}"><span class="label">Tier <b>${p.tier}</b>${prevTop != null && p.score != null ? ` · drop ${val(prevTop - p.score)}` : ""}</span></td></tr>`);
     }
     const r = pref(p.id);
+    p._tierCont = i > 0 && rows[i - 1].tier === p.tier && !(waiting && p._av === "gone" && rows[i - 1]._av !== "gone");
     // one rule per new tier reached, so the eye finds each tier boundary once
     if (waiting && p._av === "gone" && rows[i - 1]?._av !== "gone") maxTier = 0;
     const step = !tierSorted && i > 0 && p.tier && maxTier && p.tier > maxTier;
@@ -963,6 +981,7 @@ function renderDock() {
   $("#tabs").innerHTML = TABS.map(([k, l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${ui.tab === k}">${l}${counts[k] != null && counts[k] !== 0 ? `<span class="n">${counts[k]}</span>` : ""}</button>`).join("") +
     `<span class="sp"></span><button class="btn ghost sm" id="collapse" aria-label="Collapse panel">${icon("chev")}</button>`;
   $("#main").classList.toggle("collapsed", !!ui.collapsed);
+  $("#main").classList.toggle("clock", onMe() && ui.tab === "needs" && !ui.collapsed);
   const body = $("#dockBody");
   ({ player: renderPlayer, needs: renderNeeds, sources: renderSources, team: renderTeam, log: renderLog })[ui.tab](body);
 }
@@ -990,7 +1009,7 @@ function renderPlayer(el) {
       <label class="adj" title="Add or subtract fantasy points per game to reflect your own view"><span class="label">FPPG ±</span><input id="adj" class="field" type="number" step="0.5" placeholder="+2.5" value="${r.adj || ""}" style="width:72px"></label>
     </div>
     ${segs([
-      ["VONR", p.vonr == null ? "–" : `${val(p.vonr)}<small>${p.vonrSlot || ""}</small>`],
+      ["VONR", p.vonr == null ? "–" : `${val(p.vonr)}<small>vs ${p.vonrSlot || ""}</small>`],
       ["Tier", p.tier ? "T" + p.tier : "–"],
       ["Score", val(p.score)],
       ["FPPG", f1(p.blend)],
@@ -1001,8 +1020,9 @@ function renderPlayer(el) {
     ])}
     <div class="srcwrap"><table class="src"><thead><tr><th></th><th>FPPG</th><th>GP</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th><th>3PM</th><th>TO</th><th>FG</th><th>FT</th></tr></thead><tbody>
       ${srcRow("ESPN proj", p.proj.espn, p.fE)}${srcRow("FP proj", p.proj.fp, p.fF)}${srcRow("2025-26", p.last, p.fL)}
-      <tr class="blend"><td>Blend</td><td class="f">${f1(p.blend)}</td><td>${f0(p.gp)}</td><td colspan="9" style="text-align:left;color:var(--steel);font-weight:400">ESPN rank ${rk(p.espnRank)} · your rank ${p.rank ?? "–"} · season ${f0(p.total)}</td></tr>
+      <tr class="blend"><td>Blend</td><td class="f">${f1(p.blend)}</td><td>${f0(p.gp)}</td><td colspan="9" style="text-align:left;color:var(--steel);font-weight:400">ESPN rank ${rk(p.espnRank)} · your rank ${p.rank ?? "–"} · season ${f0(p.total)} pts</td></tr>
     </tbody></table></div>
+    ${p.wEff ? `<p class="mix">Blend: ESPN ${Math.round(p.wEff.espn * 100)}% · FantasyPros ${Math.round(p.wEff.fp * 100)}% · 2025-26 ${Math.round(p.wEff.last * 100)}%${p.rookie ? " · <b>rookie or no 2025-26 games: projections only</b>" : p.last && p.last.gp < 20 ? ` · only ${p.last.gp} games last season, so it counts less` : ""} · games ×${S.gpScale ?? 1}</p>` : ""}
     ${t ? `<h3>Games per fantasy week</h3>
       <div class="weeks">${t.perWeek.map((g, i) => `<i class="${i + 1 >= S.poStart && i + 1 <= S.poEnd ? "po" : ""}" style="height:${Math.max(10, g / maxW * 100)}%" title="${WEEKS[i].label}: ${g} games"></i>`).join("")}</div>
       <div class="weeks-cap"><span>Playoff weeks <b>${t.po}</b> g (avg ${AVG_PO.toFixed(1)})</span><span>Season <b>${t.total}</b></span><span>Back-to-backs <b>${t.b2b}</b></span><span>Light nights <b>${t.off}</b></span></div>` : ""}
@@ -1026,8 +1046,8 @@ function renderNeeds(el) {
     const rp = VONR_CTX.repl?.[s]?.[0];
     const cnt = open.filter(x => x === s).length;
     return `<div class="need"><span class="slot">${s}${cnt > 1 ? `<span class="label"> ×${cnt}</span>` : ""}</span>
-      <div class="nopts">${fits.map(p => `<span class="nopt" data-sel="${p.id}">${tchip(p.team)}<span class="pname">${esc(p.name)}</span> <b>${ORDER ? "#" + MY_RANK.get(String(p.id)) : val(p.vonr)}</b>${p._av === "risky" && !onMe() ? ' <span class="status risky">Last call</span>' : ""}</span>`).join("")}</div>
-      <span class="repl">${rp && L ? `Best ${s} likely left at #${L}: <b>${esc(rp.name)}</b> (${val(rp.score)})` : ""}</span></div>`;
+      <div class="nopts">${fits.map(p => `<span class="nopt" data-sel="${p.id}">${tchip(p.team)}<span class="pname">${esc(p.name)}</span> <b>${ORDER ? "#" + MY_RANK.get(String(p.id)) : val(p.vonr)}</b>${p._av === "risky" && !onMe() ? ' <span class="dot5050" title="50/50 to last to your pick"></span>' : ""}</span>`).join("")}</div>
+      <span class="repl">${rp && L ? `Fallback at #${L}: <b>${esc(rp.name)}</b> · ${val(rp.score)} pts` : ""}</span></div>`;
   }).join("");
 }
 function renderSources(el) {
@@ -1123,21 +1143,24 @@ function openSettings() {
       <label><span class="label">ESPN projection weight</span><input class="field" type="number" min="0" data-w="espn" value="${S.weights.espn}"></label>
       <label><span class="label">FantasyPros weight</span><input class="field" type="number" min="0" data-w="fp" value="${S.weights.fp}"></label>
       <label><span class="label">2025-26 weight</span><input class="field" type="number" min="0" data-w="last" value="${S.weights.last}"></label>
+      <label><span class="label">Games realism ×</span><input class="field" type="number" step="0.01" min="0.5" max="1" id="s_gp" value="${S.gpScale ?? 0.86}"></label>
+      <label><span class="label">&nbsp;</span><button class="btn" type="button" id="s_resetW" title="ESPN 40 · FantasyPros 40 · 2025-26 20 · games ×0.86">Reset to research defaults</button></label>
       <label><span class="label">Rank by</span><select class="field" id="s_rankBy"><option value="total" ${S.rankBy === "total" ? "selected" : ""}>Season total</option><option value="fppg" ${S.rankBy === "fppg" ? "selected" : ""}>Per game</option></select></label>
       <label><span class="label">VONR looks ahead</span><select class="field" id="s_look"><option value="1" ${S.lookahead === 1 ? "selected" : ""}>To my next pick</option><option value="2" ${S.lookahead === 2 ? "selected" : ""}>Two picks ahead</option></select></label>
-      <label><span class="label">Tier sensitivity</span><input class="field" type="number" step="0.1" min="1.2" max="4" id="s_tier" value="${S.tierGap}"></label>
+      <label><span class="label">Tiers</span><select class="field" id="s_tier">${[["1.4", "Fine (more tiers)"], ["1.8", "Normal"], ["2.4", "Coarse (fewer tiers)"]].map(([v, l]) => `<option value="${v}" ${Math.abs(S.tierGap - +v) < .05 ? "selected" : ""}>${l}</option>`).join("")}</select></label>
     </div>
     <h4 class="label">Schedule</h4><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <label><span class="label">Playoffs start</span><select class="field" id="s_poStart">${wk(S.poStart)}</select></label>
       <label><span class="label">Playoffs end</span><select class="field" id="s_poEnd">${wk(S.poEnd)}</select></label>
-      <label><span class="label">Playoff emphasis ×</span><input class="field" type="number" step="0.5" min="0" id="s_poEmph" value="${S.poEmph}"></label>
-      <label><span class="label">Light night = ≤ N games</span><input class="field" type="number" min="1" max="15" id="s_off" value="${S.offNight}"></label>
+      <label><span class="label">Playoff bonus per extra game</span><input class="field" type="number" step="0.5" min="0" id="s_poEmph" value="${S.poEmph}"></label>
+      <label><span class="label">Light night: ≤ N games that night</span><input class="field" type="number" min="1" max="15" id="s_off" value="${S.offNight}"></label>
     </div>
-    <p class="note">Lower tier sensitivity finds more, smaller tiers. Playoff emphasis adds each extra playoff-week game, above the league average, to Score at that many games' worth of the player's FPPG; 0 turns it off. Weeks run Monday to Sunday, with the opening week and All-Star week merged the way ESPN usually does it.</p>
+    <p class="note">Weights: when ESPN's preseason projections and the prior season were tested against what actually happened in 2024-25 and 2025-26 (265 drafted players), about 80% projections and 20% last season was the most accurate blend, and projected games ran about 14% high. ESPN and FantasyPros are split evenly. Rookies and anyone without 2025-26 games use the projections only. See RESEARCH.md. Playoff emphasis adds each extra playoff-week game, above the league average, to Score at that many games' worth of the player's FPPG; 0 turns it off. Weeks run Monday to Sunday, with the opening week and All-Star week merged the way ESPN usually does it.</p>
     <p class="note">Data built ${esc(D.generated)}. FantasyPros ADP ${esc(D.sources.fpAdpUpdated)}, ECR ${esc(D.sources.fpEcr.updated)} (${D.sources.fpEcr.experts} experts, category scoring). Run <code>python3 build_data.py</code> to refresh.</p>
     <div class="dlg-foot"><button class="btn ghost" id="s_resetPrefs" style="margin-right:auto">Clear all marks and notes</button><button class="btn" id="s_cancel">Cancel</button><button class="btn primary" id="s_save">Save</button></div>`;
   d.showModal();
   $("#s_cancel").onclick = () => d.close();
+  $("#s_resetW").onclick = () => { d.querySelectorAll("[data-w]").forEach(i => i.value = RESEARCH_WEIGHTS[i.dataset.w]); $("#s_gp").value = 0.86; };
   $("#s_resetPrefs").onclick = () => { if (confirm("Clear every target, flag and avoid mark, and all notes?")) { PREFS = {}; saveAll(); recompute(); render(); d.close(); } };
   $("#s_save").onclick = () => {
     d.querySelectorAll("[data-tn]").forEach(i => { S.teamNames[+i.dataset.tn] = i.value.trim(); });
@@ -1145,6 +1168,7 @@ function openSettings() {
     d.querySelectorAll("[data-slot]").forEach(i => S.slots[i.dataset.slot] = +i.value || 0);
     d.querySelectorAll("[data-sc]").forEach(i => S.scoring[i.dataset.sc] = parseFloat(i.value) || 0);
     d.querySelectorAll("[data-w]").forEach(i => S.weights[i.dataset.w] = parseFloat(i.value) || 0);
+    S.gpScale = Math.min(1, Math.max(.5, parseFloat($("#s_gp").value) || .86));
     S.rankBy = $("#s_rankBy").value; S.lookahead = +$("#s_look").value || 1; S.tierGap = parseFloat($("#s_tier").value) || 1.8;
     S.poStart = +$("#s_poStart").value; S.poEnd = Math.max(S.poStart, +$("#s_poEnd").value);
     S.poEmph = parseFloat($("#s_poEmph").value) || 0; S.offNight = +$("#s_off").value || 7;
